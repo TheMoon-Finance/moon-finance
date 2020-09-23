@@ -34,7 +34,7 @@ const styles = (theme) => ({
   root: {
     backgroundImage: `url(${Background})`,
     backgroundPosition: "center",
-    //backgroundSize: "cover",
+    backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     flex: 1,
     display: "flex",
@@ -42,9 +42,6 @@ const styles = (theme) => ({
     justifyContent: "space-around",
     alignItems: "center",
     flexDirection: "column",
-    [theme.breakpoints.up("sm")]: {
-      flexDirection: "row",
-    },
   },
   card: {
     flex: "1",
@@ -62,146 +59,7 @@ const styles = (theme) => ({
       minHeight: "50vh",
     },
   },
-  earn: {
-    backgroundColor: colors.white,
-    "&:hover": {
-      backgroundColor: colors.pink,
-      "& .title": {
-        color: colors.white,
-      },
-      "& .icon": {
-        color: colors.white,
-      },
-      "& .description": {
-        display: "block",
-        color: colors.white,
-        padding: "48px",
-        textAlign: "center",
-      },
-    },
-    "& .title": {
-      color: colors.pink,
-    },
-    "& .icon": {
-      color: colors.pink,
-    },
-    "& .description": {
-      display: "none",
-    },
-  },
-  zap: {
-    backgroundColor: colors.white,
-    "&:hover": {
-      backgroundColor: colors.blue,
-      "& .title": {
-        color: colors.white,
-      },
-      "& .icon": {
-        color: colors.white,
-      },
-      "& .description": {
-        display: "block",
-        color: colors.white,
-        padding: "48px",
-        textAlign: "center",
-      },
-    },
-    "& .title": {
-      color: colors.blue,
-      display: "block",
-    },
-    "& .soon": {
-      color: colors.blue,
-      display: "none",
-    },
-    "& .icon": {
-      color: colors.blue,
-    },
-    "& .description": {
-      display: "none",
-    },
-  },
-  apr: {
-    backgroundColor: colors.white,
-    "&:hover": {
-      backgroundColor: colors.lightBlack,
-      "& .title": {
-        color: colors.white,
-      },
-      "& .icon": {
-        color: colors.white,
-      },
-      "& .description": {
-        display: "block",
-        color: colors.white,
-        padding: "48px",
-        textAlign: "center",
-      },
-    },
-    "& .title": {
-      color: colors.lightBlack,
-    },
-    "& .icon": {
-      color: colors.lightBlack,
-    },
-    "& .description": {
-      display: "none",
-    },
-  },
-  vault: {
-    backgroundColor: colors.white,
-    "&:hover": {
-      backgroundColor: colors.tomato,
-      "& .title": {
-        color: colors.white,
-      },
-      "& .icon": {
-        color: colors.white,
-      },
-      "& .description": {
-        display: "block",
-        color: colors.white,
-        padding: "48px",
-        textAlign: "center",
-      },
-    },
-    "& .title": {
-      color: colors.tomato,
-    },
-    "& .icon": {
-      color: colors.tomato,
-    },
-    "& .description": {
-      display: "none",
-    },
-  },
-  cover: {
-    backgroundColor: colors.white,
-    "&:hover": {
-      backgroundColor: colors.compoundGreen,
-      "& .title": {
-        color: colors.white,
-      },
-      "& .icon": {
-        color: colors.white,
-      },
-      "& .description": {
-        display: "block",
-        color: colors.white,
-        padding: "48px",
-        textAlign: "center",
-      },
-    },
-    "& .title": {
-      color: colors.compoundGreen,
-    },
-    "& .icon": {
-      color: colors.compoundGreen,
-    },
-    "& .description": {
-      display: "none",
-    },
-  },
+
   title: {
     padding: "24px",
     paddingBottom: "0px",
@@ -222,16 +80,22 @@ const styles = (theme) => ({
   //styles
 
   logo: {
-    position: "absolute",
-    left: "45px",
-    top: "30px",
+    display: "flex",
+    width: "100%",
 
     "& img": {
-      height: "107px",
+      maxHeight: "107px",
+      marginLeft: "20px",
     },
   },
 
-  stars: {},
+  socials: {
+    display: "flex",
+    marginRight: "0",
+    marginLeft: "auto",
+    paddingTop: "34px",
+    paddingRight: "34px",
+  },
 
   circle: {
     borderRadius: "50%",
@@ -248,10 +112,10 @@ const styles = (theme) => ({
   },
 
   one: {
-    left: "-36em",
-    top: "-14em",
-    height: "324px",
-    width: "324px",
+    left: "20%",
+    top: "15%",
+    height: "200px",
+    width: "200px",
     cursor: "pointer",
 
     backgroundImage: `url(${Comet_Loans_Planet})`,
@@ -265,13 +129,14 @@ const styles = (theme) => ({
     },
 
     "&:hover": {
-      top: "-14.1em",
+      height: "324px",
+      width: "324px",
     },
   },
 
   two: {
-    top: "-24em",
-    left: " -5em",
+    left: "42%",
+    top: "3%",
     height: "200px",
     width: "200px",
     cursor: "pointer",
@@ -287,15 +152,17 @@ const styles = (theme) => ({
     },
 
     "&:hover": {
-      top: "-24.1em",
+      left: "38%",
+      height: "324px",
+      width: "324px",
     },
   },
 
   three: {
-    right: " -27em",
-    top: "-10.2em",
-    height: "186px",
-    width: "186px",
+    right: "25%",
+    top: "15%",
+    height: "200px",
+    width: "200px",
     cursor: "pointer",
 
     backgroundImage: `url(${Earn_Planet})`,
@@ -309,15 +176,16 @@ const styles = (theme) => ({
     },
 
     "&:hover": {
-      top: "-10.3em",
+      height: "324px",
+      width: "324px",
     },
   },
 
   four: {
-    left: "-31em",
-    bottom: "-16em",
-    height: "186px",
-    width: "186px",
+    left: "20%",
+    bottom: "16%",
+    height: "200px",
+    width: "200px",
     cursor: "pointer",
 
     backgroundImage: `url(${Luna_Vault_Planet})`,
@@ -331,15 +199,17 @@ const styles = (theme) => ({
     },
 
     "&:hover": {
-      bottom: "-15.9em",
+      height: "324px",
+      width: "324px",
     },
   },
 
   five: {
-    bottom: "-24em",
-    left: "-4em",
-    height: "181px",
-    width: "181px",
+    left: "42%",
+    bottom: "3%",
+
+    height: "200px",
+    width: "200px",
     cursor: "pointer",
 
     backgroundImage: `url(${Stats_Planet})`,
@@ -353,15 +223,17 @@ const styles = (theme) => ({
     },
 
     "&:hover": {
-      bottom: "-23.9em",
+      left: "38%",
+      height: "324px",
+      width: "324px",
     },
   },
 
   six: {
-    right: "-25em",
-    bottom: "-14em",
-    height: "180px",
-    width: "180px",
+    right: "25%",
+    bottom: "15%",
+    height: "200px",
+    width: "200px",
     cursor: "pointer",
 
     backgroundImage: `url(${Apr_Planet})`,
@@ -371,11 +243,12 @@ const styles = (theme) => ({
 
     "& img": {
       height: "65%",
-      marginTop: "25px",
+      marginTop: "30px",
     },
 
     "&:hover": {
-      bottom: "-13.9em",
+      height: "324px",
+      width: "324px",
     },
   },
 });
@@ -393,67 +266,126 @@ class Home extends Component {
     return (
       <div className={classes.root}>
         <div className={`${classes.logo}`}>
-          <img src={Logo} alt="Stats_Icon" />
+          <img src={Logo} alt="Logo_Icon" />
+
+          <div className={classes.socials}>
+            <div
+              className={classes.link}
+              onClick={() =>
+                window.open("https://twitter.com/finance_moon", "_blank")
+              }
+            >
+              <img
+                alt=""
+                src={require("../../assets/twitter_white.svg")}
+                height="50px"
+                className={classes.icon}
+              />
+            </div>
+            <div
+              className={classes.link}
+              onClick={() =>
+                window.open(
+                  "https://medium.com/@themoonfinance74/introduction-to-the-moon-finance-add764c104b3",
+                  "_blank"
+                )
+              }
+            >
+              <img
+                alt=""
+                src={require("../../assets/medium_white.svg")}
+                height="50px"
+                className={classes.icon}
+              />
+            </div>
+
+            <div
+              className={classes.link}
+              onClick={() =>
+                window.open("https://t.me/themoonfinance", "_blank")
+              }
+            >
+              <img
+                alt=""
+                src={require("../../assets/telegram_white.svg")}
+                height="50px"
+                className={classes.icon}
+              />
+            </div>
+            <div
+              className={classes.link}
+              onClick={() =>
+                window.open("https://github.com/TheMoon-Finance", "_blank")
+              }
+            >
+              <img
+                alt=""
+                src={require("../../assets/github_white.svg")}
+                height="50px"
+                className={classes.icon}
+              />
+            </div>
+          </div>
         </div>
+
         <div class="stars">
           <img src={Stars} alt="Stars_Icon" />
         </div>
-        <div className={`${classes.circle} ${classes.big}`}>
-          <a
-            onClick={() => {
-              this.nav(location.pathname + "zap");
-            }}
-          >
-            <div className={`${classes.circle} ${classes.one}`}>
-              <img src={Comet_Loans_Icon} alt="Comet_Loans_Icon" />
-            </div>
-          </a>
-          <a
-          /*onClick={() => {
+
+        <a
+          onClick={() => {
+            this.nav(location.pathname + "zap");
+          }}
+        >
+          <div className={`${classes.circle} ${classes.one}`}>
+            <img src={Comet_Loans_Icon} alt="Comet_Loans_Icon" />
+          </div>
+        </a>
+        <a
+        /*onClick={() => {
               this.nav(location.pathname + "cover");
             }}*/
-          >
-            <div className={`${classes.circle} ${classes.two}`}>
-              <img src={Cover_Icon} alt="Cover_Icon" />
-            </div>
-          </a>
-          <a
-            onClick={() => {
-              this.nav(location.pathname + "earn");
-            }}
-          >
-            <div className={`${classes.circle} ${classes.three}`}>
-              <img src={Earn_Icon} alt="Earn_Icon" />
-            </div>
-          </a>
-          <a
-            onClick={() => {
-              this.nav(location.pathname + "vaults");
-            }}
-          >
-            <div className={`${classes.circle} ${classes.four}`}>
-              <img src={Luna_Vault_Icon} alt="Luna_Vault_Icon" />
-            </div>
-          </a>
-          <a
-            onClick={() => {
-              this.nav(location.pathname + "stats");
-            }}
-          >
-            <div className={`${classes.circle} ${classes.five}`}>
-              <img src={Stats_Icon} alt="Stats_Icon" />
-            </div>
-          </a>
-          <a
-            onClick={() => {
-              this.nav(location.pathname + "dashboard");
-            }}
-          >
-            <div className={`${classes.circle} ${classes.six}`}>
-              <img src={Apr_Icon} alt="Apr_Icon" />
-            </div>
-          </a>
-        </div>
+        >
+          <div className={`${classes.circle} ${classes.two}`}>
+            <img src={Cover_Icon} alt="Cover_Icon" />
+          </div>
+        </a>
+        <a
+          onClick={() => {
+            this.nav(location.pathname + "earn");
+          }}
+        >
+          <div className={`${classes.circle} ${classes.three}`}>
+            <img src={Earn_Icon} alt="Earn_Icon" />
+          </div>
+        </a>
+        <a
+          onClick={() => {
+            this.nav(location.pathname + "vaults");
+          }}
+        >
+          <div className={`${classes.circle} ${classes.four}`}>
+            <img src={Luna_Vault_Icon} alt="Luna_Vault_Icon" />
+          </div>
+        </a>
+        <a
+          onClick={() => {
+            this.nav(location.pathname + "stats");
+          }}
+        >
+          <div className={`${classes.circle} ${classes.five}`}>
+            <img src={Stats_Icon} alt="Stats_Icon" />
+          </div>
+        </a>
+        <a
+          onClick={() => {
+            this.nav(location.pathname + "dashboard");
+          }}
+        >
+          <div className={`${classes.circle} ${classes.six}`}>
+            <img src={Apr_Icon} alt="Apr_Icon" />
+          </div>
+        </a>
 
         {/*<Card
           className={`${classes.card} ${classes.apr}`}
