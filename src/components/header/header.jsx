@@ -201,7 +201,7 @@ class Header extends Component {
             {this.renderLink("dashboard")}
             {this.renderLink("vaults")}
             {this.renderLink("earn")}
-            {this.renderLink("zap")}
+            {this.renderLink("loans")}
             {this.renderLink("cover")}
             {this.renderLink("stats")}
           </div>
@@ -257,7 +257,7 @@ class Header extends Component {
 
   nav = (screen) => {
     if (screen === "cover") {
-      window.open("https://yinsure.finance", "_blank");
+      //window.open("https://yinsure.finance", "_blank");
       return;
     }
     this.props.history.push("/" + screen);

@@ -334,7 +334,7 @@ class Home extends Component {
 
         <a
           onClick={() => {
-            this.nav(location.pathname + "zap");
+            this.nav(location.pathname + "loans");
           }}
         >
           <div className={`${classes.circle} ${classes.one}`}>

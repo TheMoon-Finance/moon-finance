@@ -74,7 +74,7 @@ class App extends Component {
                 <Header />
                 <InvestSimple />
               </Route>
-              <Route path="/zap">
+              <Route path="/loans">
                 <Header />
                 <Zap />
               </Route>
