@@ -95,6 +95,10 @@ const styles = (theme) => ({
     marginLeft: "auto",
     paddingTop: "34px",
     paddingRight: "34px",
+
+    "& img": {
+      cursor: "pointer",
+    },
   },
 
   circle: {
