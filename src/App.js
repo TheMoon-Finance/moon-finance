@@ -18,6 +18,7 @@ import Zap from './components/zap';
 import IDai from './components/idai';
 import Footer from './components/footer';
 import Home from './components/home';
+import Platform from './components/platform'
 import Header from './components/header';
 import Vaults from './components/vault';
 import Dashboard from './components/dashboard';
@@ -69,14 +70,17 @@ class App extends Component {
               <Route path="/stats">
                 <Header />
                 <APR />
+                <Footer />
               </Route>
               <Route path="/earn">
                 <Header />
                 <InvestSimple />
+                <Footer />
               </Route>
-              <Route path="/loans">
+              <Route path="/zap">
                 <Header />
                 <Zap />
+                <Footer />
               </Route>
               <Route path="/idai">
                 <IDai />
@@ -84,24 +88,30 @@ class App extends Component {
               <Route path="/performance">
                 <Header />
                 <Performance />
+                <Footer />
               </Route>
               <Route path="/manage">
                 <Header />
                 <Manage />
+                <Footer />
               </Route>
               <Route path="/vaults">
                 <Header />
                 <Vaults />
+                <Footer />
               </Route>
               <Route path='/dashboard'>
                 <Header />
                 <Dashboard />
+                <Footer />
+              </Route>
+              <Route path="/platform">
+                <Platform />
               </Route>
               <Route path="/">
                 <Home />
               </Route>
             </Switch>
-            <Footer />
           </div>
         </IpfsRouter>
       </MuiThemeProvider>

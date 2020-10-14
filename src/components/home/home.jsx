@@ -1,34 +1,17 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
-import { Card, Typography } from "@material-ui/core";
+import {
+  Card,
+  Typography,
+  TextField,
+  InputAdornment,
+  Button,
+} from "@material-ui/core";
 import { withNamespaces } from "react-i18next";
 import { colors } from "../../theme";
-import FlashOnIcon from "@material-ui/icons/FlashOn";
-import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
-import BarChartIcon from "@material-ui/icons/BarChart";
-import PieChartIcon from "@material-ui/icons/PieChart";
-import SecurityIcon from "@material-ui/icons/Security";
 
-import Background from "../../assets/Background.png";
-import Logo from "../../assets/Logo.png";
-import Stars from "../../assets/Stars.png";
-
-import Comet_Loans_Planet from "../../assets/Comet_Loans_Planet.png";
-import Cover_Planet from "../../assets/Cover_Planet.png";
-import Earn_Planet from "../../assets/Earn_Planet.png";
-import Luna_Vault_Planet from "../../assets/Luna_Vault_Planet.png";
-import Stats_Planet from "../../assets/Stats_Planet.png";
-import Apr_Planet from "../../assets/Apr_Planet.png";
-
-import Comet_Loans_Icon from "../../assets/Comet.png";
-import Cover_Icon from "../../assets/cover.png";
-import Earn_Icon from "../../assets/earn.png";
-import Luna_Vault_Icon from "../../assets/Luna Vault.png";
-import Stats_Icon from "../../assets/stats.png";
-import Apr_Icon from "../../assets/apr.png";
-
-import "./homeStyle.scss";
+import Background from "../../assets/homeBackground.jpg";
 
 const styles = (theme) => ({
   root: {
@@ -38,222 +21,266 @@ const styles = (theme) => ({
     backgroundRepeat: "no-repeat",
     flex: 1,
     display: "flex",
-    width: "100%",
-    justifyContent: "space-around",
-    alignItems: "center",
     flexDirection: "column",
+    //maxWidth: "1200px",
+    width: "100%",
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
-  card: {
-    flex: "1",
-    height: "25vh",
-    width: "100%",
+  investedContainerLoggedOut: {
     display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    flex: 1,
     flexDirection: "column",
-    cursor: "pointer",
-    borderRadius: "0px",
-    transition: "background-color 0.2s linear",
-    [theme.breakpoints.up("sm")]: {
-      height: "100vh",
-      minHeight: "50vh",
+    alignItems: "center",
+    justifyContent: "center",
+    minWidth: "100%",
+    marginTop: "40px",
+    [theme.breakpoints.up("md")]: {
+      minWidth: "1400px",
+    },
+  },
+  investedContainer: {
+    display: "flex",
+    flex: 1,
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    maxWidth: "85%",
+    marginTop: "40px",
+    [theme.breakpoints.up("md")]: {
+      minWidth: "1400px",
     },
   },
 
-  title: {
-    padding: "24px",
-    paddingBottom: "0px",
+  portfolioContainer: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-between",
+  },
+  header: {
+    width: "100%",
+    top: "0",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "20px",
+  },
+
+  gray: {
+    color: colors.darkGray,
+  },
+  between: {
+    width: "40px",
+    height: "40px",
+  },
+  titleBalance: {
+    //padding: "28px 30px",
+
+    //background: colors.white,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    flex: 1,
+  },
+  prettyAlign: {
+    display: "flex",
+    alignItems: "center",
+  },
+  infoIcon: {
+    fontSize: "1em",
+    marginRight: "6px",
+  },
+  assetSummary: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    flex: 1,
+    flexWrap: "wrap",
     [theme.breakpoints.up("sm")]: {
-      paddingBottom: "24px",
+      flexWrap: "nowrap",
     },
   },
+  assetIcon: {
+    display: "flex",
+    alignItems: "center",
+    verticalAlign: "middle",
+    borderRadius: "20px",
+    height: "30px",
+    width: "30px",
+    textAlign: "center",
+    cursor: "pointer",
+    marginRight: "12px",
+  },
+  heading: {
+    marginTop: "40px",
+    display: "flex",
+    flexDirection: "column",
+    minWidth: "200px",
+    alignItems: "flex-end",
+    color: "#eaeaea",
+    textTransform: "uppercase",
+  },
+  headingName: {
+    display: "flex",
+    alignItems: "center",
+    width: "325px",
+    [theme.breakpoints.down("sm")]: {
+      width: "auto",
+      flex: 1,
+    },
+  },
+  flexy: {
+    display: "flex",
+    alignItems: "center",
+  },
+  vault: {
+    borderBottom: "1px solid rgba(25, 101, 233, 0.2)",
+    padding: "12px",
+    "&:last-child": {
+      borderBottom: "none",
+    },
+  },
+  sectionHeading: {
+    color: colors.darkGray,
+    width: "100%",
+    marginLeft: "54px",
+  },
+  inline: {
+    display: "flex",
+    alignItems: "baseline",
+  },
+  symbol: {
+    paddingLeft: "6px",
+  },
+  symbolAt: {
+    paddingLeft: "6px",
+    color: colors.darkGray,
+  },
+  basedOnContainer: {
+    display: "flex",
+    width: "100%",
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+
+  presale: {
+    display: "flex",
+    alignItems: "center",
+    flex: 1,
+  },
   icon: {
-    fontSize: "60px",
-    [theme.breakpoints.up("sm")]: {
-      fontSize: "100px",
+    display: "flex",
+  },
+  links: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    flex: 1,
+    [theme.breakpoints.down("sm")]: {
+      flex: "0",
     },
   },
   link: {
-    textDecoration: "none",
+    marginRight: "20px",
+    cursor: "pointer",
+    textTransform: "uppercase",
+    fontSize: "20px",
+    color: "#eaeaea",
+    padding: "7px",
+    borderRadius: "30px",
+    "&:hover": {
+      backgroundColor: "rgba(255,255,255,0.5)",
+    },
   },
 
-  //styles
-
-  logo: {
-    display: "flex",
+  contribute: {
     width: "100%",
-
-    "& img": {
-      maxHeight: "107px",
-      marginLeft: "20px",
-    },
-  },
-
-  socials: {
+    height: "60px",
     display: "flex",
-    marginRight: "0",
-    marginLeft: "auto",
-    paddingTop: "34px",
-    paddingRight: "34px",
-
-    "& img": {
-      cursor: "pointer",
-    },
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#5e9767",
+    color: "#eaeaea",
+    textTransform: "uppercase",
+    fontSize: "30px",
   },
 
-  circle: {
-    borderRadius: "50%",
-    width: "50px",
-    height: "50px",
-    display: "inline-block",
-    position: "absolute",
+  contract: {
+    width: "85%",
+    height: "60px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#eaeaea",
+    textTransform: "uppercase",
     textAlign: "center",
   },
-
-  big: {
-    width: "150px",
-    height: "150px",
+  token: {
+    width: "100%",
+    height: "60px",
+    display: "flex",
+    alignItems: "center",
+    paddingLeft: "15px",
+    backgroundColor: "#d71056",
+    color: colors.white,
+    textTransform: "uppercase",
+    textAlign: "center",
   },
-
-  one: {
-    left: "20%",
-    top: "15%",
-    height: "200px",
-    width: "200px",
-    cursor: "pointer",
-
-    backgroundImage: `url(${Comet_Loans_Planet})`,
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-
-    "& img": {
-      height: "57%",
-      marginTop: "50px",
-    },
-
-    "&:hover": {
-      height: "324px",
-      width: "324px",
+  buyModal: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    backgroundColor: colors.white,
+    color: colors.black,
+    padding: "20px",
+    "& h3": {
+      marginTop: "15px",
     },
   },
 
-  two: {
-    left: "42%",
-    top: "3%",
-    height: "200px",
-    width: "200px",
-    cursor: "pointer",
-
-    backgroundImage: `url(${Cover_Planet})`,
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-
-    "& img": {
-      height: "63%",
-      marginTop: "25px",
+  input: {
+    "&::placeholder": {
+      color: "#161616",
     },
+    color: "#161616",
+    backgroundColor: "#dbdbdb",
+    borderRadius: "5px !important",
+  },
+  cssOutlinedInput: {
+    borderRadius: "5px !important",
+  },
+  notchedOutline: {
+    border: "1px solid",
+    borderColor: "white !important",
+  },
 
+  actionButton: {
+    color: colors.white,
+    borderRadius: "5px",
+    backgroundColor: "#5e9767",
+    borderColor: "white !important",
+    margin: "15px 0",
     "&:hover": {
-      left: "38%",
-      height: "324px",
-      width: "324px",
+      border: "1px solid",
+      borderColor: "#dbdbdb !important",
+      backgroundColor: "#5e9767",
     },
   },
 
-  three: {
-    right: "25%",
-    top: "15%",
-    height: "200px",
-    width: "200px",
-    cursor: "pointer",
-
-    backgroundImage: `url(${Earn_Planet})`,
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-
-    "& img": {
-      height: "67%",
-      marginTop: "32px",
-    },
-
-    "&:hover": {
-      height: "324px",
-      width: "324px",
-    },
+  buttonText: {
+    fontSize: "24px",
   },
 
-  four: {
-    left: "20%",
-    bottom: "16%",
-    height: "200px",
-    width: "200px",
-    cursor: "pointer",
-
-    backgroundImage: `url(${Luna_Vault_Planet})`,
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-
-    "& img": {
-      height: "63%",
-      marginTop: "20px",
-    },
-
-    "&:hover": {
-      height: "324px",
-      width: "324px",
-    },
-  },
-
-  five: {
-    left: "42%",
-    bottom: "3%",
-
-    height: "200px",
-    width: "200px",
-    cursor: "pointer",
-
-    backgroundImage: `url(${Stats_Planet})`,
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-
-    "& img": {
-      height: "65%",
-      marginTop: "25px",
-    },
-
-    "&:hover": {
-      left: "38%",
-      height: "324px",
-      width: "324px",
-    },
-  },
-
-  six: {
-    right: "25%",
-    bottom: "15%",
-    height: "200px",
-    width: "200px",
-    cursor: "pointer",
-
-    backgroundImage: `url(${Apr_Planet})`,
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-
-    "& img": {
-      height: "65%",
-      marginTop: "30px",
-    },
-
-    "&:hover": {
-      height: "324px",
-      width: "324px",
-    },
+  description: {
+    marginTop: "28px",
+    maxWidth: "700px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#eaeaea",
+    textTransform: "uppercase",
+    textAlign: "center",
   },
 });
 
@@ -261,155 +288,238 @@ class Home extends Component {
   constructor(props) {
     super();
 
-    this.state = {};
+    this.state = {
+      projectAmount: "",
+      liquidityAmount: "",
+      tokenPrice: 1 / 12,
+    };
+
+    this.handleProjectAmountChange = this.handleProjectAmountChange.bind(this);
+    this.handleLiquidityAmountChange = this.handleLiquidityAmountChange.bind(
+      this
+    );
   }
 
+  handleProjectAmountChange = (e) => {
+    this.setState({
+      projectAmount: e.target.value ? Math.abs(e.target.value) : "",
+    });
+  };
+
+  handleLiquidityAmountChange = (e) => {
+    this.setState({
+      liquidityAmount: e.target.value ? Math.abs(e.target.value) : "",
+    });
+  };
+
   render() {
-    const { classes, t, location } = this.props;
+    const { classes, location } = this.props;
 
     return (
       <div className={classes.root}>
-        <div className={`${classes.logo}`}>
-          <img src={Logo} alt="Logo_Icon" />
+        <div className={`${classes.header} header`}>
+          <div className={`${classes.presale} presale`}> </div>
+          <div className={`${classes.icon} icon`}></div>
 
-          <div className={classes.socials}>
-            <div
-              className={classes.link}
-              onClick={() =>
-                window.open("https://twitter.com/finance_moon", "_blank")
-              }
-            >
-              <img
-                alt=""
-                src={require("../../assets/twitter_white.svg")}
-                height="50px"
-                className={classes.icon}
-              />
-            </div>
-            <div
-              className={classes.link}
-              onClick={() =>
-                window.open(
-                  "https://medium.com/@themoonfinance74/introduction-to-the-moon-finance-add764c104b3",
-                  "_blank"
-                )
-              }
-            >
-              <img
-                alt=""
-                src={require("../../assets/medium_white.svg")}
-                height="50px"
-                className={classes.icon}
-              />
-            </div>
-
-            <div
-              className={classes.link}
-              onClick={() =>
-                window.open("https://t.me/themoonfinance", "_blank")
-              }
-            >
-              <img
-                alt=""
-                src={require("../../assets/telegram_white.svg")}
-                height="50px"
-                className={classes.icon}
-              />
-            </div>
-            <div
-              className={classes.link}
-              onClick={() =>
-                window.open("https://github.com/TheMoon-Finance", "_blank")
-              }
-            >
-              <img
-                alt=""
-                src={require("../../assets/github_white.svg")}
-                height="50px"
-                className={classes.icon}
-              />
-            </div>
-          </div>
-        </div>
-
-        <div class="stars">
-          <img src={Stars} alt="Stars_Icon" />
-        </div>
-
-        <a
-          onClick={() => {
-            this.nav(location.pathname + "loans");
-          }}
-        >
-          <div className={`${classes.circle} ${classes.one}`}>
-            <img src={Comet_Loans_Icon} alt="Comet_Loans_Icon" />
-          </div>
-        </a>
-        <a
-        /*onClick={() => {
-              this.nav(location.pathname + "cover");
-            }}*/
-        >
-          <div className={`${classes.circle} ${classes.two}`}>
-            <img src={Cover_Icon} alt="Cover_Icon" />
-          </div>
-        </a>
-        <a
-          onClick={() => {
-            this.nav(location.pathname + "earn");
-          }}
-        >
-          <div className={`${classes.circle} ${classes.three}`}>
-            <img src={Earn_Icon} alt="Earn_Icon" />
-          </div>
-        </a>
-        <a
-          onClick={() => {
-            this.nav(location.pathname + "vaults");
-          }}
-        >
-          <div className={`${classes.circle} ${classes.four}`}>
-            <img src={Luna_Vault_Icon} alt="Luna_Vault_Icon" />
-          </div>
-        </a>
-        <a
-          onClick={() => {
-            this.nav(location.pathname + "stats");
-          }}
-        >
-          <div className={`${classes.circle} ${classes.five}`}>
-            <img src={Stats_Icon} alt="Stats_Icon" />
-          </div>
-        </a>
-        <a
-          onClick={() => {
-            this.nav(location.pathname + "dashboard");
-          }}
-        >
-          <div className={`${classes.circle} ${classes.six}`}>
-            <img src={Apr_Icon} alt="Apr_Icon" />
-          </div>
-        </a>
-
-        {/*<Card
-          className={`${classes.card} ${classes.apr}`}
-          onClick={() => {
-            this.nav(location.pathname + "dashboard");
-          }}
-        >
-          <BarChartIcon className={`${classes.icon} icon`} />
-          <Typography variant={"h3"} className={`${classes.title} title`}>
-            Dashboard
-          </Typography>
-          <Typography
-            variant={"h4"}
-            className={`${classes.description} description`}
+          <div
+            className={`${classes.links} links`}
+            onClick={() => {
+              this.nav("platform");
+            }}
           >
-            {
-              "Get a quick glance at how your portfolio is growing while invested in yearn's products."
-            }
+            <Typography variant={"h4"} className={`${classes.link} link`}>
+              Platform
+            </Typography>
+            <Typography variant={"h4"} className={`${classes.link} link`}>
+              White Paper
+            </Typography>
+          </div>
+        </div>
+        <div className={classes.heading}>
+          <Typography variant={"h2"}>
+            Putting the power back in the peoples hands
           </Typography>
-        </Card>*/}
+        </div>
+        <div className={classes.investedContainer}>
+          <div className={classes.portfolioContainer}>
+            <div className={classes.titleBalance}>
+              <div className={classes.contribute}>
+                <Typography variant={"h3"}>
+                  Contribute to the project
+                </Typography>
+              </div>
+              <div className={classes.contract}>
+                <Typography variant={"h3"}>
+                  This contract IS FOR THE TEAM TO DEVELOP THE PROTOCOL AND
+                  LAUNCH THE VAULTS
+                </Typography>
+              </div>
+              <div className={classes.token}>
+                <Typography variant={"h3"}>ROCK tokens</Typography>
+              </div>
+              <div className={classes.buyModal}>
+                <Typography variant={"h3"}>ROCK AMOUNT</Typography>
+                <TextField
+                  fullWidth
+                  className={classes.actionInput}
+                  value={this.state.projectAmount}
+                  onChange={this.handleProjectAmountChange}
+                  /*onChange={(e) => {
+                    this.props.setSendAmount(e.target.value);
+                  }}*/
+                  placeholder={"0 ROCK"}
+                  variant="outlined"
+                  type="number"
+                  InputProps={{
+                    inputProps: { min: 0 },
+                    classes: {
+                      root: classes.cssOutlinedInput,
+                      input: classes.input,
+                      focused: classes.cssFocused,
+                      notchedOutline: classes.notchedOutline,
+                    },
+                  }}
+                />
+                <Typography variant={"h3"}>YOUR WALLET ADDRESS</Typography>
+                <TextField
+                  fullWidth
+                  className={classes.actionInput}
+                  /*onChange={(e) => {
+                    this.props.setSendAmount(e.target.value);
+                  }}*/
+                  placeholder={"0x..."}
+                  variant="outlined"
+                  InputProps={{
+                    classes: {
+                      root: classes.cssOutlinedInput,
+                      input: classes.input,
+                      focused: classes.cssFocused,
+                      notchedOutline: classes.notchedOutline,
+                    },
+                  }}
+                />
+                <Typography variant={"h3"} style={{ color: "#5e9767" }}>
+                  Buy Price: 0.08333333 ETH | 1 ROCK
+                </Typography>
+                <Typography variant={"h4"} style={{ color: "#161616" }}>
+                  {"You must send"}{" "}
+                  {this.state.projectAmount * this.state.tokenPrice}{" "}
+                  {"ETH for "}
+                  {this.state.projectAmount ? this.state.projectAmount : 0}{" "}
+                  {"ROCK"}
+                </Typography>
+                <Button
+                  className={classes.actionButton}
+                  variant="outlined"
+                  color="primary"
+                  onClick={this.onTrade}
+                  fullWidth
+                >
+                  <Typography className={classes.buttonText} variant={"h4"}>
+                    BUY ROCK TOKENS
+                  </Typography>
+                </Button>
+              </div>
+              <div className={classes.description}>
+                <Typography variant={"h3"}>
+                  By Contributing to our project You will drive the development
+                  forward making genration finance a success and we have you to
+                  thanks for that.
+                </Typography>
+              </div>
+            </div>
+
+            <div className={classes.between}></div>
+
+            <div className={classes.titleBalance}>
+              <div className={classes.contribute}>
+                <Typography variant={"h3"}>
+                  Contribute to the liquidity pool
+                </Typography>
+              </div>
+              <div className={classes.contract}>
+                <Typography variant={"h3"}>
+                  This contract is for direct uniswap liquidity only
+                </Typography>
+              </div>
+              <div className={classes.token}>
+                <Typography variant={"h3"}>ROCK tokens</Typography>
+              </div>
+              <div className={classes.buyModal}>
+                <Typography variant={"h3"}>ROCK AMOUNT</Typography>
+                <TextField
+                  fullWidth
+                  className={classes.actionInput}
+                  value={this.state.liquidityAmount}
+                  onChange={this.handleLiquidityAmountChange}
+                  /*onChange={(e) => {
+                    this.props.setSendAmount(e.target.value);
+                  }}*/
+                  placeholder={"0 ROCK"}
+                  variant="outlined"
+                  type="number"
+                  InputProps={{
+                    inputProps: { min: 0 },
+                    classes: {
+                      root: classes.cssOutlinedInput,
+                      input: classes.input,
+                      focused: classes.cssFocused,
+                      notchedOutline: classes.notchedOutline,
+                    },
+                  }}
+                />
+                <Typography variant={"h3"}>YOUR WALLET ADDRESS</Typography>
+                <TextField
+                  fullWidth
+                  className={classes.actionInput}
+                  /*onChange={(e) => {
+                    this.props.setSendAmount(e.target.value);
+                  }}*/
+                  placeholder={"0x..."}
+                  variant="outlined"
+                  InputProps={{
+                    classes: {
+                      root: classes.cssOutlinedInput,
+                      input: classes.input,
+                      focused: classes.cssFocused,
+                      notchedOutline: classes.notchedOutline,
+                    },
+                  }}
+                />
+                <Typography variant={"h3"} style={{ color: "#5e9767" }}>
+                  Buy Price: 0.08333333 ETH | 1 ROCK
+                </Typography>
+                <Typography variant={"h4"} style={{ color: "#161616" }}>
+                  {"You must send"}{" "}
+                  {this.state.liquidityAmount * this.state.tokenPrice}{" "}
+                  {"ETH for "}
+                  {this.state.liquidityAmount
+                    ? this.state.liquidityAmount
+                    : 0}{" "}
+                  {"ROCK"}
+                </Typography>
+                <Button
+                  className={classes.actionButton}
+                  variant="outlined"
+                  color="primary"
+                  onClick={this.onTrade}
+                  fullWidth
+                >
+                  <Typography className={classes.buttonText} variant={"h4"}>
+                    LUNA LIQUIDITY EVENT
+                  </Typography>
+                </Button>
+              </div>
+              <div className={classes.description}>
+                <Typography variant={"h3"}>
+                  By Contributing to the liquidity building event you are
+                  ensuring the success so the token and the growth of genration
+                  finance is assured.
+                </Typography>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
