@@ -13,6 +13,13 @@ import { colors } from "../../theme";
 
 import Background from "../../assets/homeBackground.jpg";
 
+import ENS from "ethjs-ens";
+import { CONNECTION_CONNECTED, CONNECTION_DISCONNECTED } from "../../constants";
+
+import Store from "../../stores";
+const emitter = Store.emitter;
+const store = Store.store;
+
 const styles = (theme) => ({
   root: {
     backgroundImage: `url(${Background})`,
@@ -289,6 +296,7 @@ class Home extends Component {
     super();
 
     this.state = {
+      account: store.getStore("account"),
       projectAmount: "",
       liquidityAmount: "",
       tokenPrice: 1 / 12,
@@ -299,6 +307,40 @@ class Home extends Component {
       this
     );
   }
+
+  componentWillMount() {
+    emitter.on(CONNECTION_CONNECTED, this.connectionConnected);
+    emitter.on(CONNECTION_DISCONNECTED, this.connectionDisconnected);
+  }
+
+  componentWillUnmount() {
+    emitter.removeListener(CONNECTION_CONNECTED, this.connectionConnected);
+    emitter.removeListener(
+      CONNECTION_DISCONNECTED,
+      this.connectionDisconnected
+    );
+  }
+
+  connectionConnected = () => {
+    this.setState({ account: store.getStore("account") });
+    this.setAddressEnsName();
+  };
+
+  connectionDisconnected = () => {
+    this.setState({ account: store.getStore("account") });
+  };
+
+  setAddressEnsName = async () => {
+    const provider = store.getStore("web3context").library.provider;
+    const account = store.getStore("account");
+    const { address } = account;
+    const network = provider.networkVersion;
+    const ens = new ENS({ provider, network });
+    const addressEnsName = await ens.reverse(address).catch(() => {});
+    if (addressEnsName) {
+      this.setState({ addressEnsName });
+    }
+  };
 
   handleProjectAmountChange = (e) => {
     this.setState({
@@ -315,24 +357,87 @@ class Home extends Component {
   render() {
     const { classes, location } = this.props;
 
+    const { account, addressEnsName } = this.state;
+
+    var address = null;
+    if (account.address) {
+      address = account.address;
+    }
+    const addressAlias = addressEnsName || address;
+
     return (
       <div className={classes.root}>
         <div className={`${classes.header} header`}>
           <div className={`${classes.presale} presale`}> </div>
           <div className={`${classes.icon} icon`}></div>
 
-          <div
-            className={`${classes.links} links`}
-            onClick={() => {
-              this.nav("platform");
-            }}
-          >
-            <Typography variant={"h4"} className={`${classes.link} link`}>
+          <div className={`${classes.links} links`}>
+            <Typography
+              variant={"h4"}
+              className={`${classes.link} link`}
+              onClick={() => {
+                this.nav("platform");
+              }}
+            >
               Platform
             </Typography>
-            <Typography variant={"h4"} className={`${classes.link} link`}>
-              White Paper
-            </Typography>
+
+            <div
+              className={classes.link}
+              onClick={() =>
+                window.open("https://twitter.com/finance_moon", "_blank")
+              }
+            >
+              <img
+                alt=""
+                src={require("../../assets/twitter_white.svg")}
+                height="30px"
+                className={classes.icon}
+              />
+            </div>
+            <div
+              className={classes.link}
+              onClick={() =>
+                window.open(
+                  "https://medium.com/@themoonfinance74/introduction-to-the-moon-finance-add764c104b3",
+                  "_blank"
+                )
+              }
+            >
+              <img
+                alt=""
+                src={require("../../assets/medium_white.svg")}
+                height="30px"
+                className={classes.icon}
+              />
+            </div>
+
+            <div
+              className={classes.link}
+              onClick={() =>
+                window.open("https://t.me/themoonfinance", "_blank")
+              }
+            >
+              <img
+                alt=""
+                src={require("../../assets/telegram_white.svg")}
+                height="30px"
+                className={classes.icon}
+              />
+            </div>
+            <div
+              className={classes.link}
+              onClick={() =>
+                window.open("https://github.com/TheMoon-Finance", "_blank")
+              }
+            >
+              <img
+                alt=""
+                src={require("../../assets/github_white.svg")}
+                height="30px"
+                className={classes.icon}
+              />
+            </div>
           </div>
         </div>
         <div className={classes.heading}>
@@ -384,6 +489,7 @@ class Home extends Component {
                 <TextField
                   fullWidth
                   className={classes.actionInput}
+                  value={addressAlias}
                   /*onChange={(e) => {
                     this.props.setSendAmount(e.target.value);
                   }}*/
@@ -472,6 +578,7 @@ class Home extends Component {
                 <TextField
                   fullWidth
                   className={classes.actionInput}
+                  value={addressAlias}
                   /*onChange={(e) => {
                     this.props.setSendAmount(e.target.value);
                   }}*/
@@ -506,14 +613,14 @@ class Home extends Component {
                   fullWidth
                 >
                   <Typography className={classes.buttonText} variant={"h4"}>
-                    LUNA LIQUIDITY EVENT
+                    CONTRIBUTE TO THE LUNA LIQUIDITY EVENT
                   </Typography>
                 </Button>
               </div>
               <div className={classes.description}>
                 <Typography variant={"h3"}>
                   By Contributing to the liquidity building event you are
-                  ensuring the success so the token and the growth of genration
+                  ensuring the success of the token and the growth of genration
                   finance is assured.
                 </Typography>
               </div>
