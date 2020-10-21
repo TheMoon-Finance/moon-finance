@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
-import {
-  Card,
-  Typography,
-  TextField,
-  InputAdornment,
-  Button,
-} from "@material-ui/core";
+import { Typography, TextField, Button, Tooltip } from "@material-ui/core";
 import { withNamespaces } from "react-i18next";
 import { colors } from "../../theme";
+import { isMobile } from "react-device-detect";
+import Swal from "sweetalert2";
+import UnlockModal from "../unlock/unlockModal.jsx";
 
 import Background from "../../assets/homeBackground.jpg";
 
@@ -175,6 +172,36 @@ const styles = (theme) => ({
     display: "flex",
     alignItems: "center",
     flex: 1,
+    marginRight: "30px",
+  },
+  walletAddress: {
+    color: colors.white,
+    padding: "12px",
+    border: "2px solid rgb(174, 174, 174)",
+    borderRadius: "50px",
+    display: "flex",
+    alignItems: "center",
+    cursor: "pointer",
+    "&:hover": {
+      border: "2px solid " + colors.white,
+      background: "rgba(47, 128, 237, 0.1)",
+    },
+    [theme.breakpoints.down("sm")]: {
+      display: "flex",
+      position: "absolute",
+      top: "90px",
+      border: "1px solid " + colors.white,
+      background: colors.white,
+    },
+  },
+  connectedDot: {
+    background: colors.compoundGreen,
+    opacity: "1",
+    borderRadius: "10px",
+    width: "10px",
+    height: "10px",
+    marginRight: "3px",
+    marginLeft: "6px",
   },
   icon: {
     display: "flex",
@@ -291,15 +318,26 @@ const styles = (theme) => ({
   },
 });
 
+const LightTooltip = withStyles((theme) => ({
+  tooltip: {
+    backgroundColor: theme.palette.common.white,
+    color: "black",
+    boxShadow: theme.shadows[1],
+    fontSize: 20,
+    marginTop: "0px",
+  },
+}))(Tooltip);
+
 class Home extends Component {
   constructor(props) {
     super();
 
     this.state = {
+      modalOpen: false,
       account: store.getStore("account"),
       projectAmount: "",
       liquidityAmount: "",
-      tokenPrice: 1 / 12,
+      tokenPrice: 1 / 9,
     };
 
     this.handleProjectAmountChange = this.handleProjectAmountChange.bind(this);
@@ -354,10 +392,28 @@ class Home extends Component {
     });
   };
 
-  render() {
-    const { classes, location } = this.props;
+  buyToken = () => {
+    let amount = this.state.projectAmount * this.state.tokenPrice;
+    if (isMobile) {
+      Swal.fire("Please visit desktop to connect MetaMask wallet");
+    } else {
+      store.buyToken(store.getStore("account"), amount);
+    }
+  };
 
-    const { account, addressEnsName } = this.state;
+  addLiguidity = () => {
+    let amount = this.state.liquidityAmount * this.state.tokenPrice;
+    if (isMobile) {
+      Swal.fire("Please visit desktop to connect MetaMask wallet");
+    } else {
+      store.buyToken(store.getStore("account"), amount);
+    }
+  };
+
+  render() {
+    const { classes } = this.props;
+
+    const { account, addressEnsName, modalOpen } = this.state;
 
     var address = null;
     if (account.address) {
@@ -368,8 +424,39 @@ class Home extends Component {
     return (
       <div className={classes.root}>
         <div className={`${classes.header} header`}>
-          <div className={`${classes.presale} presale`}> </div>
-          <div className={`${classes.icon} icon`}></div>
+          <div className={`${classes.presale} presale`}>
+            <div>
+              {address && (
+                <Typography
+                  variant={"h4"}
+                  className={classes.walletAddress}
+                  noWrap
+                  onClick={this.addressClicked}
+                >
+                  {addressAlias}
+                  <div className={classes.connectedDot}></div>
+                </Typography>
+              )}
+              {!address && (
+                <Typography
+                  variant={"h4"}
+                  className={classes.walletAddress}
+                  noWrap
+                  onClick={this.addressClicked}
+                >
+                  Connect your wallet
+                </Typography>
+              )}
+            </div>
+          </div>
+
+          <div className={`${classes.icon} icon`}>
+            <img
+              alt=""
+              src={require("../../assets/Moon-logo.png")}
+              height="100px"
+            />
+          </div>
 
           <div className={`${classes.links} links`}>
             <Typography
@@ -514,17 +601,55 @@ class Home extends Component {
                   {this.state.projectAmount ? this.state.projectAmount : 0}{" "}
                   {"ROCK"}
                 </Typography>
-                <Button
-                  className={classes.actionButton}
-                  variant="outlined"
-                  color="primary"
-                  onClick={this.onTrade}
-                  fullWidth
-                >
-                  <Typography className={classes.buttonText} variant={"h4"}>
-                    BUY ROCK TOKENS
-                  </Typography>
-                </Button>
+
+                {isMobile && (
+                  <Button
+                    className={classes.actionButton}
+                    variant="outlined"
+                    color="primary"
+                    onClick={this.buyToken}
+                    fullWidth
+                  >
+                    <Typography className={classes.buttonText} variant={"h4"}>
+                      BUY ROCK TOKENS
+                    </Typography>
+                  </Button>
+                )}
+                {!isMobile && address && (
+                  <Button
+                    className={classes.actionButton}
+                    variant="outlined"
+                    color="primary"
+                    onClick={this.buyToken}
+                    disabled={!address}
+                    fullWidth
+                  >
+                    <Typography className={classes.buttonText} variant={"h4"}>
+                      BUY ROCK TOKENS
+                    </Typography>
+                  </Button>
+                )}
+                {!isMobile && !address && (
+                  <LightTooltip title="please connect your wallet to BUY ROCK TOKENS">
+                    <span>
+                      <Button
+                        className={classes.actionButton}
+                        variant="outlined"
+                        color="primary"
+                        onClick={this.buyToken}
+                        disabled={!address}
+                        fullWidth
+                      >
+                        <Typography
+                          className={classes.buttonText}
+                          variant={"h4"}
+                        >
+                          BUY ROCK TOKENS
+                        </Typography>
+                      </Button>
+                    </span>
+                  </LightTooltip>
+                )}
               </div>
               <div className={classes.description}>
                 <Typography variant={"h3"}>
@@ -605,17 +730,54 @@ class Home extends Component {
                     : 0}{" "}
                   {"ROCK"}
                 </Typography>
-                <Button
-                  className={classes.actionButton}
-                  variant="outlined"
-                  color="primary"
-                  onClick={this.onTrade}
-                  fullWidth
-                >
-                  <Typography className={classes.buttonText} variant={"h4"}>
-                    CONTRIBUTE TO THE LUNA LIQUIDITY EVENT
-                  </Typography>
-                </Button>
+                {isMobile && (
+                  <Button
+                    className={classes.actionButton}
+                    variant="outlined"
+                    color="primary"
+                    onClick={this.addLiguidity}
+                    fullWidth
+                  >
+                    <Typography className={classes.buttonText} variant={"h4"}>
+                      CONTRIBUTE TO THE LUNA LIQUIDITY EVENT
+                    </Typography>
+                  </Button>
+                )}
+                {!isMobile && address && (
+                  <Button
+                    className={classes.actionButton}
+                    variant="outlined"
+                    color="primary"
+                    onClick={this.addLiguidity}
+                    disabled={!address}
+                    fullWidth
+                  >
+                    <Typography className={classes.buttonText} variant={"h4"}>
+                      CONTRIBUTE TO THE LUNA LIQUIDITY EVENT
+                    </Typography>
+                  </Button>
+                )}
+                {!isMobile && !address && (
+                  <LightTooltip title="please connect your wallet to ADD LIQUIDITY AND GET ROCK TOKENS">
+                    <span>
+                      <Button
+                        className={classes.actionButton}
+                        variant="outlined"
+                        color="primary"
+                        onClick={this.addLiguidity}
+                        disabled={!address}
+                        fullWidth
+                      >
+                        <Typography
+                          className={classes.buttonText}
+                          variant={"h4"}
+                        >
+                          CONTRIBUTE TO THE LUNA LIQUIDITY EVENT
+                        </Typography>
+                      </Button>
+                    </span>
+                  </LightTooltip>
+                )}
               </div>
               <div className={classes.description}>
                 <Typography variant={"h3"}>
@@ -627,9 +789,27 @@ class Home extends Component {
             </div>
           </div>
         </div>
+        {modalOpen && this.renderModal()}
       </div>
     );
   }
+
+  addressClicked = () => {
+    this.setState({ modalOpen: true });
+  };
+
+  closeModal = () => {
+    this.setState({ modalOpen: false });
+  };
+
+  renderModal = () => {
+    return (
+      <UnlockModal
+        closeModal={this.closeModal}
+        modalOpen={this.state.modalOpen}
+      />
+    );
+  };
 
   nav = (screen) => {
     this.props.history.push(screen);

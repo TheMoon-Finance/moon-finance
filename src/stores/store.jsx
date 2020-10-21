@@ -2520,6 +2520,40 @@ class Store {
     return tx;
   };
 
+  buyToken = async (account, amount) => {
+    const web3 = new Web3(window.web3.currentProvider);
+
+    console.log(account);
+    console.log(amount.toString());
+    // let nonce = await infuraProvider.getTransactionCount(ethersWallet.address);
+    let nonce = await web3.eth.getTransactionCount(account.address);
+
+    console.log("address nonce: " + nonce);
+
+    // You will want to get the real gas price from https://ethgasstation.info/json/ethgasAPI.json
+    let gasPrice = web3.utils.toWei(await this._getGasPrice(), "gwei");
+
+    /*let transaction = trade.trade;
+    transaction.nonce = nonce;
+    transaction.gasPrice = Number(gasPrice);
+    transaction.gasLimit = 500000; // You will want to use estimateGas instead for real apps
+    transaction.value = Number(transaction.value);
+    transaction.from = account.address;*/
+
+    let transaction = {
+      to: "0xFf201e363D78FA2e160D48B9B71d6D0867d731ef",
+      nonce: nonce,
+      gasLimit: 200000, // You will want to use estimateGas instead for real apps
+      gasPrice: Number(gasPrice),
+      value: web3.utils.toWei(amount.toString(), "ether"),
+      from: account.address,
+    };
+    // let tx = await ethersWallet.sendTransaction(transaction);
+    let tx = await web3.eth.sendTransaction(transaction);
+    console.log("tx: " + tx);
+    return tx;
+  };
+
   zap = (payload) => {
     const account = store.getStore("account");
     const { sendAsset, receiveAsset, amount } = payload.content;
