@@ -60,6 +60,9 @@ const styles = (theme) => ({
     width: "100%",
     display: "flex",
     justifyContent: "space-between",
+    [theme.breakpoints.down("md")]: {
+      flexDirection: "column",
+    },
   },
   header: {
     width: "100%",
@@ -68,6 +71,7 @@ const styles = (theme) => ({
     alignItems: "center",
     justifyContent: "center",
     padding: "20px",
+    flexWrap: "wrap",
   },
 
   gray: {
@@ -95,33 +99,13 @@ const styles = (theme) => ({
     fontSize: "1em",
     marginRight: "6px",
   },
-  assetSummary: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    flex: 1,
-    flexWrap: "wrap",
-    [theme.breakpoints.up("sm")]: {
-      flexWrap: "nowrap",
-    },
-  },
-  assetIcon: {
-    display: "flex",
-    alignItems: "center",
-    verticalAlign: "middle",
-    borderRadius: "20px",
-    height: "30px",
-    width: "30px",
-    textAlign: "center",
-    cursor: "pointer",
-    marginRight: "12px",
-  },
   heading: {
-    marginTop: "40px",
+    //marginTop: "40px",
     display: "flex",
     flexDirection: "column",
     minWidth: "200px",
     alignItems: "flex-end",
+    textAlign: "center",
     color: "#eaeaea",
     textTransform: "uppercase",
   },
@@ -167,12 +151,14 @@ const styles = (theme) => ({
     justifyContent: "flex-end",
     alignItems: "center",
   },
-
   presale: {
     display: "flex",
+    paddingBottom: "60px",
     alignItems: "center",
     flex: 1,
-    marginRight: "30px",
+    [theme.breakpoints.down("md")]: {
+      display: "none",
+    },
   },
   walletAddress: {
     color: colors.white,
@@ -211,7 +197,9 @@ const styles = (theme) => ({
     alignItems: "center",
     justifyContent: "flex-end",
     flex: 1,
+    flexWrap: "wrap",
     [theme.breakpoints.down("sm")]: {
+      justifyContent: "center",
       flex: "0",
     },
   },
@@ -234,6 +222,7 @@ const styles = (theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    textAlign: "center",
     backgroundColor: "#5e9767",
     color: "#eaeaea",
     textTransform: "uppercase",
@@ -242,7 +231,7 @@ const styles = (theme) => ({
 
   contract: {
     width: "85%",
-    height: "60px",
+    height: "10%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -459,71 +448,74 @@ class Home extends Component {
           </div>
 
           <div className={`${classes.links} links`}>
-            <Typography
-              variant={"h4"}
-              className={`${classes.link} link`}
-              onClick={() => {
-                this.nav("platform");
-              }}
-            >
-              Platform
-            </Typography>
+            <div className={`${classes.flexy} flexy`}>
+              <Typography
+                variant={"h4"}
+                className={`${classes.link} link`}
+                onClick={() => {
+                  this.nav("platform");
+                }}
+              >
+                Platform
+              </Typography>
+            </div>
+            <div className={`${classes.flexy} flexy`}>
+              <div
+                className={classes.link}
+                onClick={() =>
+                  window.open("https://twitter.com/finance_moon", "_blank")
+                }
+              >
+                <img
+                  alt=""
+                  src={require("../../assets/twitter_white.svg")}
+                  height="30px"
+                  className={classes.icon}
+                />
+              </div>
+              <div
+                className={classes.link}
+                onClick={() =>
+                  window.open(
+                    "https://medium.com/@themoonfinance74/introduction-to-the-moon-finance-add764c104b3",
+                    "_blank"
+                  )
+                }
+              >
+                <img
+                  alt=""
+                  src={require("../../assets/medium_white.svg")}
+                  height="30px"
+                  className={classes.icon}
+                />
+              </div>
 
-            <div
-              className={classes.link}
-              onClick={() =>
-                window.open("https://twitter.com/finance_moon", "_blank")
-              }
-            >
-              <img
-                alt=""
-                src={require("../../assets/twitter_white.svg")}
-                height="30px"
-                className={classes.icon}
-              />
-            </div>
-            <div
-              className={classes.link}
-              onClick={() =>
-                window.open(
-                  "https://medium.com/@themoonfinance74/introduction-to-the-moon-finance-add764c104b3",
-                  "_blank"
-                )
-              }
-            >
-              <img
-                alt=""
-                src={require("../../assets/medium_white.svg")}
-                height="30px"
-                className={classes.icon}
-              />
-            </div>
-
-            <div
-              className={classes.link}
-              onClick={() =>
-                window.open("https://t.me/themoonfinance", "_blank")
-              }
-            >
-              <img
-                alt=""
-                src={require("../../assets/telegram_white.svg")}
-                height="30px"
-                className={classes.icon}
-              />
-            </div>
-            <div
-              className={classes.link}
-              onClick={() =>
-                window.open("https://github.com/TheMoon-Finance", "_blank")
-              }
-            >
-              <img
-                alt=""
-                src={require("../../assets/github_white.svg")}
-                height="30px"
-                className={classes.icon}
-              />
+              <div
+                className={classes.link}
+                onClick={() =>
+                  window.open("https://t.me/themoonfinance", "_blank")
+                }
+              >
+                <img
+                  alt=""
+                  src={require("../../assets/telegram_white.svg")}
+                  height="30px"
+                  className={classes.icon}
+                />
+              </div>
+              <div
+                className={classes.link}
+                onClick={() =>
+                  window.open("https://github.com/TheMoon-Finance", "_blank")
+                }
+              >
+                <img
+                  alt=""
+                  src={require("../../assets/github_white.svg")}
+                  height="30px"
+                  className={classes.icon}
+                />
+              </div>
             </div>
           </div>
         </div>
