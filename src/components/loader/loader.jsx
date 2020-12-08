@@ -23,10 +23,12 @@ class Loader extends Component {
 
 const styles = (props) => ({
   colorPrimary: {
-    backgroundColor: "#fe5600",
+    //backgroundColor: "#fe5600",
+    backgroundColor: "black",
   },
   barColorPrimary: {
-    backgroundColor: "#4a3a8a",
+    //backgroundColor: "#4a3a8a",
+    backgroundColor: "#166cba",
   },
 });
 

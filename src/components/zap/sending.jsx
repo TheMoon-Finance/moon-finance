@@ -8,7 +8,7 @@ import {
   Button,
 } from "@material-ui/core";
 import { colors } from "../../theme";
-
+import PrettoSlider from "../slider";
 import { withNamespaces } from "react-i18next";
 // import {
 //   BALANCES_RETURNED
@@ -86,7 +86,8 @@ class Sending extends Component {
             "0.00",
             sendAsset ? sendAsset.symbol : ""
           )}
-          <div className={classes.scaleContainer}>
+          <PrettoSlider />
+          {/*<div className={classes.scaleContainer}>
             <Button
               className={classes.scale}
               variant="text"
@@ -131,7 +132,7 @@ class Sending extends Component {
             >
               <Typography variant={"h5"}>100%</Typography>
             </Button>
-          </div>
+          </div>*/}
         </div>
       </div>
     );

@@ -35,7 +35,7 @@ export const colors = {
 
   text: "#212529",
   lightBlue: "#2F80ED",
-  topaz: "#0b8f92",
+  topaz: "#fff",
   darkGray: "rgba(43,57,84,.5)",
   borderBlue: "rgba(25, 101, 233, 0.5)",
 };
@@ -235,17 +235,17 @@ const iswapTheme = {
     },
     MuiAccordion: {
       root: {
-        border: "2px solid #21004f",
-        borderRadius: "50px",
+        border: "2px solid #1776cb",
+        borderRadius: "28px",
         margin: "8px 0px",
-        boxShadow: "3px 3px 6px #220445",
+        boxShadow: "3px 3px 6px #0f2a47",
         "&:before": {
           //underline color when textfield is inactive
           backgroundColor: "none",
           height: "0px",
         },
         "&:hover": {
-          border: "2px solid #ed5007",
+          border: "2px solid #fff",
         },
       },
     },
@@ -274,27 +274,25 @@ const iswapTheme = {
     MuiToggleButton: {
       root: {
         width: "170px",
-        borderRadius: "50px !important",
+        borderRadius: "14px !important",
         padding: "11px !important",
         margin: "0 50px 30px",
         textTransform: "none",
         minWidth: "100px",
-        border: "2px solid #9382aa !important",
-        background: "#21004f",
+        border: "2px solid rgba(255, 255, 255, 0.6) !important",
+        background: "linear-gradient(0deg, #177bd3 0%, #06070a 100%)",
         "& > span > h4": {
-          color: "#555",
+          color: "rgba(255, 255, 255, 0.6)",
         },
         "&:hover": {
-          backgroundColor: "#21004f",
+          border: "2px solid #fff !important",
         },
         "&$selected": {
-          backgroundColor: "#fe5600",
-          border: "2px solid #fe5600 !important",
+          border: "2px solid #fff !important",
           "& > span > h4": {
             color: "#fff",
           },
           "&:hover": {
-            backgroundColor: "#fe5600",
             "& > span > h4": {
               color: "#fff",
             },

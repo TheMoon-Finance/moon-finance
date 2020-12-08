@@ -80,6 +80,7 @@ const styles = (theme) => ({
   community: {
     display: "flex",
     padding: "0px 24px",
+    cursor: "default",
     [theme.breakpoints.down("xs")]: {
       paddingBottom: "24px",
     },
@@ -87,6 +88,9 @@ const styles = (theme) => ({
   communityLink: {
     display: "flex",
     alignItems: "center",
+    "& h4": {
+      cursor: "pointer",
+    },
     "&:hover": {
       textDecoration: "underline",
     },
@@ -167,9 +171,7 @@ class Footer extends Component {
                 )
               }
             >
-              <Typography variant={"h4"}>
-                The Generation Finance Glossary
-              </Typography>
+              <Typography variant={"h4"}>The Moon Finance Glossary</Typography>
               <div className={classes.separator}>&#124;</div>
             </div>
             <div

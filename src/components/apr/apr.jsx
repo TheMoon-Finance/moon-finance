@@ -33,19 +33,19 @@ const styles = (theme) => ({
     },
   },
   pairs: {
-    background: "#21004f",
+    background: "linear-gradient(0deg, #177bd3 0%, #06070a 100%)",
     color: colors.white,
     padding: "42px 36px",
     borderRadius: "50px",
-    border: "1px solid rgba(238, 84, 49, 0.5)",
+    border: "1px solid rgba(255, 255, 255, 0.5)",
     margin: "40px",
     width: "calc(100% - 80px)",
-    boxShadow: "5px 5px 7px #220445",
+    boxShadow: "5px 5px 7px #080d15",
   },
   pair: {
     display: "flex",
     justifyContent: "space-between",
-    borderBottom: "1px solid rgba(238, 84, 49, 0.5)",
+    borderBottom: "1px solid rgba(255, 255, 255, 0.5)",
     padding: "10px 0px",
   },
   name: {
@@ -134,11 +134,11 @@ const styles = (theme) => ({
     width: "100%",
   },
   symbol: {
-    color: "#9080a7",
+    color: "#9db4c9",
     paddingLeft: "6px",
   },
   preSymbol: {
-    color: "#9080a7",
+    color: "#9db4c9",
     paddingRight: "6px",
   },
   inline: {

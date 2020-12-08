@@ -88,11 +88,11 @@ const styles = (theme) => ({
     display: "flex",
     flexWrap: "wrap",
     padding: "42px 30px",
-    borderRadius: "50px",
+    border: "2px solid #ffffff",
+    borderRadius: "28px",
     maxWidth: "500px",
     justifyContent: "center",
-    background: "#21004f",
-    boxShadow: "5px 5px 7px #220445",
+    background: "linear-gradient(180deg, #177bd3 0%, #06070a 100%)",
     color: colors.white,
     marginBottom: "30px",
   },
@@ -114,20 +114,20 @@ const styles = (theme) => ({
     margin: "10px 0",
   },
   inputTitle: {
-    color: "#fe5600",
+    color: colors.white,
   },
   actionButton: {
-    background: "#fe5600",
+    background: colors.white,
     marginTop: "40px",
     width: "40%",
-    border: "1px solid #fe5600",
+    border: "1px solid white",
     "&:hover": {
-      background: "#fe5600",
-      border: "1px solid white",
+      background: colors.white,
+      border: "1px solid #1776cb",
     },
   },
   buttonText: {
-    color: colors.white,
+    color: colors.black,
   },
 });
 
@@ -152,7 +152,6 @@ const PrettoSlider = withStyles({
     height: 8,
     margin: "40px 0px",
   },
-  rail: {},
   track: {
     backgroundImage:
       "linear-gradient(to right, #ff5c93 0%, #e4ea3f 52.2346%, #55ffac 100%)",
@@ -164,7 +163,7 @@ const PrettoSlider = withStyles({
     border: "2px solid currentColor",
     marginTop: -8,
     marginLeft: -12,
-    color: "#fe5600",
+    color: "#000",
     "&:focus, &:hover, &$active": {
       boxShadow: "inherit",
     },
@@ -178,7 +177,6 @@ const PrettoSlider = withStyles({
   mark: {
     display: "none",
   },
-  active: {},
   valueLabel: {
     left: "calc(-50% + 4px)",
   },
@@ -370,7 +368,7 @@ class IEO extends Component {
                   /*onChange={(e) => {
                     this.props.setSendAmount(e.target.value);
                   }}*/
-                  placeholder={"0 BOOM"}
+                  placeholder={"0 ROK"}
                   variant="outlined"
                   type="number"
                   InputProps={{
@@ -383,7 +381,7 @@ class IEO extends Component {
                     },
                   }}
                 />
-                <Typography variant={"h4"}>Boom</Typography>
+                <Typography variant={"h4"}>ROK</Typography>
               </div>
             </div>
             <Button

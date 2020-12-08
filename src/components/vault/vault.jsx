@@ -69,7 +69,7 @@ const styles = (theme) => ({
     alignItems: "center",
     justifyContent: "flex-start",
     minWidth: "100%",
-    marginTop: "40px",
+    margin: "40px 0",
     [theme.breakpoints.up("md")]: {
       minWidth: "900px",
     },
@@ -200,7 +200,7 @@ const styles = (theme) => ({
   expansionPanel: {
     maxWidth: "calc(100vw - 24px)",
     width: "100%",
-    background: "#21004f",
+    background: "linear-gradient(0deg, #177bd3 0%, #06070a 100%)",
     color: colors.white,
   },
   versionToggle: {
@@ -241,7 +241,7 @@ const styles = (theme) => ({
     color: colors.darkGray,
   },
   grey: {
-    color: "#9080a7",
+    color: "#9db4c9",
   },
   filters: {
     width: "70%",
@@ -292,7 +292,7 @@ const styles = (theme) => ({
     color: colors.white,
   },
   assetSelectRoot: {
-    color: "#fe5600",
+    color: "#167ad2",
   },
 });
 
