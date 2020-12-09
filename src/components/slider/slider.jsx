@@ -76,7 +76,7 @@ class PrettoSlider extends Component {
     return (
       <Slider
         //valueLabelDisplay="auto"
-        defaultValue={50}
+        defaultValue={0}
         aria-labelledby="discrete-slider-restrict"
         step={null}
         marks={marks}

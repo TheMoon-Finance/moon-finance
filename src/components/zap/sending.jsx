@@ -86,53 +86,12 @@ class Sending extends Component {
             "0.00",
             sendAsset ? sendAsset.symbol : ""
           )}
-          <PrettoSlider />
-          {/*<div className={classes.scaleContainer}>
-            <Button
-              className={classes.scale}
-              variant="text"
-              disabled={loading}
-              color="primary"
-              onClick={() => {
-                this.props.setSendAmountPercent(25);
-              }}
-            >
-              <Typography variant={"h5"}>25%</Typography>
-            </Button>
-            <Button
-              className={classes.scale}
-              variant="text"
-              disabled={loading}
-              color="primary"
-              onClick={() => {
-                this.props.setSendAmountPercent(50);
-              }}
-            >
-              <Typography variant={"h5"}>50%</Typography>
-            </Button>
-            <Button
-              className={classes.scale}
-              variant="text"
-              disabled={loading}
-              color="primary"
-              onClick={() => {
-                this.props.setSendAmountPercent(75);
-              }}
-            >
-              <Typography variant={"h5"}>75%</Typography>
-            </Button>
-            <Button
-              className={classes.scale}
-              variant="text"
-              disabled={loading}
-              color="primary"
-              onClick={() => {
-                this.props.setSendAmountPercent(100);
-              }}
-            >
-              <Typography variant={"h5"}>100%</Typography>
-            </Button>
-          </div>*/}
+          <PrettoSlider
+            disabled={loading}
+            onChange={(event, newValue) => {
+              this.props.setSendAmountPercent(newValue);
+            }}
+          />
         </div>
       </div>
     );

@@ -67,7 +67,8 @@ const styles = (theme) => ({
     border: "1px solid rgb(174, 174, 174)",
     borderRadius: "0.75rem",
     marginBottom: "24px",
-    background: colors.white,
+    background: "linear-gradient(180deg, #177bd3 0%, #06070a 100%)",
+    color: colors.white,
   },
   introCenter: {
     color: colors.white,
@@ -368,7 +369,7 @@ class IEO extends Component {
                   /*onChange={(e) => {
                     this.props.setSendAmount(e.target.value);
                   }}*/
-                  placeholder={"0 ROK"}
+                  placeholder={"0 ROCK"}
                   variant="outlined"
                   type="number"
                   InputProps={{
@@ -381,7 +382,7 @@ class IEO extends Component {
                     },
                   }}
                 />
-                <Typography variant={"h4"}>ROK</Typography>
+                <Typography variant={"h4"}>ROCK</Typography>
               </div>
             </div>
             <Button

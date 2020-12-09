@@ -226,7 +226,8 @@ const styles = (theme) => ({
     borderRadius: "0.75rem",
     marginBottom: "24px",
     //lineHeight: "1.2",
-    background: colors.white,
+    background: "linear-gradient(180deg, #177bd3 0%, #06070a 100%)",
+    color: colors.white,
   },
   fees: {
     paddingRight: "75px",

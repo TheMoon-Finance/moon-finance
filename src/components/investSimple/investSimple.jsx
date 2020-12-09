@@ -236,7 +236,8 @@ const styles = (theme) => ({
     border: "1px solid rgb(174, 174, 174)",
     borderRadius: "0.75rem",
     marginBottom: "24px",
-    background: colors.white,
+    background: "linear-gradient(180deg, #177bd3 0%, #06070a 100%)",
+    color: colors.white,
   },
   walletAddress: {
     padding: "0px 12px",
