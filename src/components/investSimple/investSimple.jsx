@@ -389,7 +389,7 @@ class InvestSimple extends Component {
           {/*<Typography variant={"h5"} className={classes.disaclaimer}>
             This project is in beta. Use at your own risk.
           </Typography>*/}
-          <div className={classes.intro}>
+          {/*<div className={classes.intro}>
             <ToggleButtonGroup
               value={value}
               onChange={this.handleTabChange}
@@ -407,7 +407,7 @@ class InvestSimple extends Component {
                 <Typography variant={"h4"}>busd.curve.fi</Typography>
               </ToggleButton>
             </ToggleButtonGroup>
-          </div>
+          </div>*/}
           {account.address && value === 0 && this.renderAssetBlocksv1()}
           {account.address && value === 1 && this.renderAssetBlocksv2()}
           {account.address && value === 2 && this.renderAssetBlocksv3()}

@@ -153,6 +153,12 @@ const styles = (theme) => ({
       display: "none",
     },
   },
+  downloadFile: {
+    color: colors.white,
+    textDecoration: "none",
+    fontSize: "16px",
+    fontWeight: "600",
+  },
 });
 
 class Header extends Component {
@@ -208,8 +214,8 @@ class Header extends Component {
           <div className={classes.icon}>
             <img
               alt=""
-              src={require("../../assets/Moon-logo.png")}
-              height={"90px"}
+              src={require("../../assets/Logo.png")}
+              height={"50px"}
               onClick={() => {
                 this.nav("");
               }}
@@ -219,10 +225,11 @@ class Header extends Component {
             {this.renderLink("dashboard")}
             {this.renderLink("vaults")}
             {this.renderLink("earn")}
+            {this.renderLink("staking")}
             {this.renderLink("zap")}
             {this.renderLink("stats")}
             {this.renderLink("cover")}
-            {this.renderLink("ieo")}
+            {/*{this.renderLink("ieo")}*/}
           </div>
           <div className={classes.account}>
             {address && (
@@ -256,37 +263,57 @@ class Header extends Component {
   renderLink = (screen) => {
     const { classes } = this.props;
 
-    return (
-      <div
-        className={
-          window.location.pathname === "/" + screen
-            ? classes.linkActive
-            : classes.link
-        }
-        onClick={() => {
-          this.nav(screen);
-        }}
-      >
-        <img
-          alt=""
-          src={require("../../assets/Header_" + screen + ".png")}
-          height={"70px"}
+    if (screen !== "staking") {
+      return (
+        <div
+          className={
+            window.location.pathname === "/" + screen
+              ? classes.linkActive
+              : classes.link
+          }
           onClick={() => {
-            this.nav("");
+            this.nav(screen);
           }}
-        />
-        <Typography variant={"h4"} className={classes.title}>
-          {screen}
-        </Typography>
-      </div>
-    );
+        >
+          <img
+            alt=""
+            src={require("../../assets/Header_" + screen + ".png")}
+            height={"70px"}
+          />
+          <Typography variant={"h4"} className={`title`}>
+            {screen}
+          </Typography>
+        </div>
+      );
+    } else {
+      return (
+        <div
+          className={
+            window.location.pathname === "/" + screen
+              ? classes.linkActive
+              : classes.link
+          }
+        >
+          <a href="/staking" className={classes.downloadFile}>
+            <img
+              alt=""
+              src={require("../../assets/Header_" + screen + ".png")}
+              height={"70px"}
+            />
+            <Typography variant={"h4"} className={`title`}>
+              {screen}
+            </Typography>
+          </a>
+        </div>
+      );
+    }
   };
 
   nav = (screen) => {
-    if (screen === "cover") {
+    /*if (screen === "cover") {
       window.open("https://ins.lampgram.com", "_blank");
       return;
-    }
+    }*/
     this.props.history.push("/" + screen);
   };
 

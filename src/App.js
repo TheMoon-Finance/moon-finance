@@ -23,6 +23,7 @@ import Header from './components/header';
 import Vaults from './components/vault';
 import Dashboard from './components/dashboard';
 import IEO from './components/ieo';
+import Staking from './components/staking';
 
 import { injected } from "./stores/connectors";
 
@@ -126,11 +127,18 @@ class App extends Component {
                 <IEO />
                 <Footer />
               </Route>
+              <Route path='/staking'>
+                <Header />
+                <Staking />
+                <Footer />
+              </Route>
               <Route path="/platform">
-                <Platform />
+                {/*<Platform />*/}
+                <Home />
               </Route>
               <Route path="/">
-                <Home />
+                {/*<Home />*/}
+                <Platform />
               </Route>
             </Switch>
           </div>
