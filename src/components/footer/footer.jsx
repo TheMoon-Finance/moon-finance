@@ -132,18 +132,20 @@ class Footer extends Component {
         </div>
         <div className={classes.footer}>
           <div className={classes.builtWith}>
-            <Typography variant={"h4"}>&copy; 2020 The Moon Finance</Typography>
+            <Typography variant={"h4"}>
+              &copy; 2020 www.themoon.finance
+            </Typography>
           </div>
 
           <div className={classes.community}>
-            <div
+            {/*<div
               className={classes.communityLink}
-              /*+onClick={() =>
+              onClick={() =>
                 window.open(
                   "https://docs.google.com/document/d/1RKILLUtuH6KdB2a1ib64uGAT21iljGEtncPiDpj7V68/edit#heading=h.574fgj1k64vh",
                   "_blank"
                 )
-              }*/
+              }
             >
               <Typography variant={"h4"}>
                 Introduction to The Moon Finance
@@ -152,39 +154,39 @@ class Footer extends Component {
             </div>
             <div
               className={classes.communityLink}
-              /*onClick={() =>
+              onClick={() =>
                 window.open(
                   "https://docs.google.com/document/d/1wspAUVJ3mchYfmg0Q2lf3GaqYaO1k0vC2MU5yLQYy5U/edit#",
                   "_blank"
                 )
-              }*/
+              }
             >
               <Typography variant={"h4"}>FAQ</Typography>
               <div className={classes.separator}>&#124;</div>
             </div>
             <div
               className={classes.communityLink}
-              /*onClick={() =>
+              onClick={() =>
                 window.open(
                   "https://docs.google.com/document/d/1egLax3Oausl00emwTCQG12dxRTBmI4efwAyb_j3vvIk/edit#heading=h.fnuzp7f01k6j",
                   "_blank"
                 )
-              }*/
+              }
             >
               <Typography variant={"h4"}>The Moon Finance Glossary</Typography>
               <div className={classes.separator}>&#124;</div>
             </div>
             <div
               className={classes.communityLink}
-              /*onClick={() =>
+              onClick={() =>
                 window.open(
                   "https://docs.google.com/document/d/18r-zIFXwKqAU_YAh7dNvO3rE-0f6q-MGSBpu5uDc7yo/edit#heading=h.er4l2t42sg1d",
                   "_blank"
                 )
-              }*/
+              }
             >
               <Typography variant={"h4"}>How-To Guides</Typography>
-            </div>
+            </div>*/}
           </div>
 
           <div className={classes.socials}>

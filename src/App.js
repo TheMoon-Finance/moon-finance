@@ -17,7 +17,7 @@ import Performance from './components/performance';
 import Zap from './components/zap';
 import IDai from './components/idai';
 import Footer from './components/footer';
-import Home from './components/home';
+import Presale from './components/presale';
 import Platform from './components/platform'
 import Header from './components/header';
 import Vaults from './components/vault';
@@ -127,17 +127,16 @@ class App extends Component {
                 <IEO />
                 <Footer />
               </Route>
-              <Route path='/staking'>
+              {/*<Route path='/staking'>
                 <Header />
                 <Staking />
                 <Footer />
-              </Route>
-              <Route path="/platform">
-                {/*<Platform />*/}
-                <Home />
-              </Route>
+              </Route>*/}
+              {/*<Route path="/platform">
+                <Platform />
+              </Route>*/}
               <Route path="/">
-                {/*<Home />*/}
+                {/*<Presale />*/}
                 <Platform />
               </Route>
             </Switch>

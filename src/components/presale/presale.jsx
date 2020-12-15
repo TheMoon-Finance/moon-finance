@@ -320,7 +320,7 @@ const LightTooltip = withStyles((theme) => ({
   },
 }))(Tooltip);
 
-class Home extends Component {
+class Presale extends Component {
   constructor(props) {
     super();
 
@@ -840,4 +840,4 @@ class Home extends Component {
   };
 }
 
-export default withNamespaces()(withRouter(withStyles(styles)(Home)));
+export default withNamespaces()(withRouter(withStyles(styles)(Presale)));

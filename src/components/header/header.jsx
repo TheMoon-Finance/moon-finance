@@ -225,7 +225,7 @@ class Header extends Component {
             {this.renderLink("dashboard")}
             {this.renderLink("vaults")}
             {this.renderLink("earn")}
-            {this.renderLink("staking")}
+            {/*{this.renderLink("staking")}*/}
             {this.renderLink("zap")}
             {this.renderLink("stats")}
             {this.renderLink("cover")}
