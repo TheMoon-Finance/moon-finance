@@ -24,6 +24,7 @@ import Vaults from './components/vault';
 import Dashboard from './components/dashboard';
 import IEO from './components/ieo';
 import Staking from './components/staking';
+import Homepage from './components/homepage'
 
 import { injected } from "./stores/connectors";
 
@@ -135,6 +136,11 @@ class App extends Component {
               {/*<Route path="/platform">
                 <Platform />
               </Route>*/}
+
+              <Route path="/home">
+                <Homepage />
+              </Route>
+
               <Route path="/">
                 {/*<Presale />*/}
                 <Platform />
