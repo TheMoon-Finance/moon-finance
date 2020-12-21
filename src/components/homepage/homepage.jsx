@@ -9,6 +9,7 @@ import Background1 from "../../assets/Container1Background.png";
 import Background4 from "../../assets/Container4Background.png";
 import Background7 from "../../assets/Container7Background.png";
 import Background9 from "../../assets/Container9Background.png";
+import Background11 from "../../assets/Container11Background.png";
 
 const styles = (theme) => ({
   root: {
@@ -28,6 +29,12 @@ const styles = (theme) => ({
     "& h3": {
       fontWeight: "300",
     },
+  },
+
+  subtitle: {
+    textTransform: "uppercase",
+    margin: "20px 0px",
+    textAlign: "initial",
   },
 
   ///////////////////////////////////////////////// HEADER////////////////////////////////////////////////////
@@ -69,7 +76,7 @@ const styles = (theme) => ({
     },
   },
   link: {
-    marginRight: "20px",
+    margin: "0 10px",
     cursor: "pointer",
     textTransform: "uppercase",
     fontSize: "20px",
@@ -78,7 +85,8 @@ const styles = (theme) => ({
     borderRadius: "30px",
     fontWeight: "300",
     "&:hover": {
-      backgroundColor: "rgba(255,255,255,0.5)",
+      //backgroundColor: "rgba(255,255,255,0.5)",
+      textDecoration: "underline",
     },
   },
 
@@ -191,13 +199,13 @@ const styles = (theme) => ({
       border: "2px solid " + colors.white,
       //background: "rgba(47, 128, 237, 0.1)",
     },
-    [theme.breakpoints.down("sm")]: {
+    /*[theme.breakpoints.down("sm")]: {
       display: "flex",
       position: "absolute",
       top: "90px",
       border: "1px solid " + colors.borderBlue,
       background: colors.white,
-    },
+    },*/
   },
 
   /////////////////////////////////////////////////////////// Container 2 (Introducing) ////////////////////////////////////////////////////////////
@@ -490,12 +498,14 @@ const styles = (theme) => ({
 
   contactLink: {
     display: "flex",
+    margin: "30px",
+    cursor: "pointer",
   },
 
   /////////////////////////////////////////////////////////// Container 11 (Footer) ////////////////////////////////////////////////////////////
 
   container11: {
-    background: `url(${Background4})`,
+    background: `url(${Background11})`,
     backgroundPosition: "center",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
@@ -521,19 +531,19 @@ class Homepage extends Component {
       <div className={classes.root}>
         {/* ----------------------------------------------------------------------  Container 1 -------------------------------------------------------------------------------------- */}
         <div className={classes.container1}>
-          <div className={`${classes.header} header`}>
-            <div className={`${classes.presale} presale`}>
+          <div className={classes.header}>
+            <div className={classes.presale}>
               <img
                 alt=""
                 src={require("../../assets/Logo.png")}
                 height="50px"
               />
             </div>
-            <div className={`${classes.links} links`}>
-              <div className={`${classes.flexy} flexy`}>
+            <div className={classes.links}>
+              <div className={classes.flexy}>
                 <Typography
                   variant={"h4"}
-                  className={`${classes.link} link`}
+                  className={classes.link}
                   onClick={() => {
                     this.nav("platform");
                   }}
@@ -542,7 +552,7 @@ class Homepage extends Component {
                 </Typography>
                 <Typography
                   variant={"h4"}
-                  className={`${classes.link} link`}
+                  className={classes.link}
                   onClick={() => {
                     this.nav("platform");
                   }}
@@ -551,7 +561,7 @@ class Homepage extends Component {
                 </Typography>
                 <Typography
                   variant={"h4"}
-                  className={`${classes.link} link`}
+                  className={classes.link}
                   onClick={() => {
                     this.nav("platform");
                   }}
@@ -560,14 +570,22 @@ class Homepage extends Component {
                 </Typography>
                 <Typography
                   variant={"h4"}
-                  className={`${classes.link} link`}
+                  className={classes.link}
                   onClick={() => {
                     this.nav("platform");
                   }}
                 >
                   Contact
                 </Typography>
-                <Typography variant={"h4"} className={`${classes.link} link`}>
+                <Typography
+                  variant={"h4"}
+                  className={classes.link}
+                  style={{
+                    backgroundColor: "#fff",
+                    color: "#001ca1",
+                    padding: "5px 10px",
+                  }}
+                >
                   <a
                     //href={WhitePaper}
                     download="Generation_Finance_White_Paper.pdf"
@@ -607,6 +625,13 @@ class Homepage extends Component {
               <Typography variant={"h3"} className={classes.boldText}>
                 Rock{" "}
               </Typography>
+              <img
+                alt=""
+                src={require("../../assets/Rock-logo.png")}
+                height="64px"
+                className={classes.icon}
+                style={{ marginRight: "7px" }}
+              />
             </div>
             <div>
               <Typography variant={"h3"} className={classes.whiteText}>
@@ -617,6 +642,13 @@ class Homepage extends Component {
               <Typography variant={"h3"} className={classes.boldText}>
                 USDT{" "}
               </Typography>
+              <img
+                alt=""
+                src={require("../../assets/USDT-icon.png")}
+                height="64px"
+                className={classes.icon}
+                style={{ marginRight: "7px" }}
+              />
             </div>
             <div>
               <Typography variant={"h3"} className={classes.whiteText}>
@@ -674,7 +706,7 @@ class Homepage extends Component {
           <div className={classes.title}>
             <Typography variant={"h3"}>Introducing</Typography>
           </div>
-          <div>
+          <div className={classes.subtitle}>
             <Typography variant={"h2"}>Lunaswap</Typography>
           </div>
           <div className={classes.iconContainer}>
@@ -705,7 +737,7 @@ class Homepage extends Component {
           <div className={classes.title}>
             <Typography variant={"h3"}>Stake and Earn</Typography>
           </div>
-          <div>
+          <div className={classes.subtitle}>
             <Typography variant={"h2"}>Megastake</Typography>
           </div>
 
@@ -746,7 +778,7 @@ class Homepage extends Component {
           <div className={classes.title}>
             <Typography variant={"h3"}>Features</Typography>
           </div>
-          <div>
+          <div className={classes.subtitle}>
             <Typography variant={"h2"}>Why us?</Typography>
           </div>
           <div className={classes.featuresContainer}>
@@ -822,7 +854,7 @@ class Homepage extends Component {
                 <Typography variant={"h3"}>Problem factors</Typography>
               </div>
               <div>
-                <Typography variant={"h2"}>
+                <Typography variant={"h2"} className={classes.subtitle}>
                   Issues with the Digital Payment System
                 </Typography>
               </div>
@@ -873,7 +905,7 @@ class Homepage extends Component {
                 <Typography variant={"h3"}>Creative Solutions</Typography>
               </div>
               <div>
-                <Typography variant={"h2"}>
+                <Typography variant={"h2"} className={classes.subtitle}>
                   Powerful Swapping Methods
                 </Typography>
               </div>
@@ -949,7 +981,7 @@ class Homepage extends Component {
           <div className={classes.title}>
             <Typography variant={"h3"}>Ecosystem</Typography>
           </div>
-          <div>
+          <div className={classes.subtitle}>
             <Typography variant={"h2"}>Powered by</Typography>
           </div>
           <img
@@ -1055,7 +1087,9 @@ class Homepage extends Component {
             <Typography variant={"h3"}>Non-Fungible Tokens</Typography>
           </div>
           <div>
-            <Typography variant={"h2"}>Shooting Stars</Typography>
+            <Typography variant={"h2"} className={classes.subtitle}>
+              Shooting Stars
+            </Typography>
           </div>
           <div className={classes.iconContainer}>
             <img
@@ -1089,35 +1123,52 @@ class Homepage extends Component {
         {/* ----------------------------------------------------------------------  Container 10 -------------------------------------------------------------------------------------- */}
         <div className={classes.container10}>
           <div>
-            <Typography variant={"h2"}>Contact Us</Typography>
+            <Typography variant={"h2"} className={classes.subtitle}>
+              Contact Us
+            </Typography>
           </div>
           <div className={classes.featuresContainer}>
-            <div className={classes.contactLink}>
+            <div
+              className={classes.contactLink}
+              onClick={() =>
+                window.open("https://t.me/generationygem", "_blank")
+              }
+            >
               <img
                 alt=""
-                src={require("../../assets/telegram.svg")}
-                height="24px"
+                src={require("../../assets/Container10twitter.png")}
+                height="80px"
                 className={classes.icon}
               />
-              <Typography variant={"h3"}>Send us an email</Typography>
             </div>
-            <div className={classes.contactLink}>
+            <div
+              className={classes.contactLink}
+              onClick={() =>
+                window.open("https://t.me/generationygem", "_blank")
+              }
+            >
               <img
                 alt=""
-                src={require("../../assets/telegram.svg")}
-                height="24px"
+                src={require("../../assets/Container10telegram.png")}
+                height="80px"
                 className={classes.icon}
               />
-              <Typography variant={"h3"}>Join us on Telegram</Typography>
             </div>
-            <div className={classes.contactLink}>
+            <div
+              className={classes.contactLink}
+              onClick={() =>
+                window.open(
+                  "https://medium.com/@ygem18/the-official-fork-of-yearn-finance-is-here-5609d20cb0dc",
+                  "_blank"
+                )
+              }
+            >
               <img
                 alt=""
-                src={require("../../assets/telegram.svg")}
-                height="24px"
+                src={require("../../assets/Container10medium.png")}
+                height="80px"
                 className={classes.icon}
               />
-              <Typography variant={"h3"}>Read our Medium</Typography>
             </div>
           </div>
         </div>
@@ -1125,7 +1176,7 @@ class Homepage extends Component {
         {/* ----------------------------------------------------------------------  Container 11 -------------------------------------------------------------------------------------- */}
         <div className={classes.container11}>
           <div className={classes.iconContainer}>
-            <img alt="" src={require("../../assets/Logo.png")} height="50px" />
+            <img alt="" src={require("../../assets/Logo.png")} height="100px" />
           </div>
           <div className={`${classes.flexy} flexy`}>
             <Typography
