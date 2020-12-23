@@ -5,6 +5,8 @@ import { Typography, TextField, Button, Tooltip } from "@material-ui/core";
 import { withNamespaces } from "react-i18next";
 import { colors } from "../../theme";
 
+import { HashLink } from "react-router-hash-link";
+
 import Background1 from "../../assets/Container1Background.png";
 import Background4 from "../../assets/Container4Background.png";
 import Background7 from "../../assets/Container7Background.png";
@@ -60,6 +62,12 @@ const styles = (theme) => ({
   flexy: {
     display: "flex",
     alignItems: "center",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+    },
+    "& a": {
+      textDecoration: "none",
+    },
   },
   icon: {
     display: "flex",
@@ -129,18 +137,35 @@ const styles = (theme) => ({
     //color: colors.white,
     fontSize: "32px",
     textTransform: "uppercase",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "21px",
+    },
   },
   yellowText: {
     color: "#f8ce00ff",
     fontSize: "42px",
     fontStyle: "italic",
     marginRight: "14px !important",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "24px",
+    },
   },
   boldText: {
     fontSize: "42px",
     fontStyle: "italic",
     marginRight: "14px !important",
     textTransform: "uppercase",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "26px",
+    },
+  },
+
+  assetIcon: {
+    marginRight: "7px",
+    height: "64px",
+    [theme.breakpoints.down("sm")]: {
+      height: "26px",
+    },
   },
 
   lunaswapContainer: {
@@ -151,8 +176,8 @@ const styles = (theme) => ({
     justifyContent: "flex-start",
     maxWidth: "85%",
     //marginTop: "40px",
-    [theme.breakpoints.up("md")]: {
-      //minWidth: "1400px",
+    [theme.breakpoints.down("md")]: {
+      flexDirection: "column",
     },
   },
 
@@ -222,6 +247,9 @@ const styles = (theme) => ({
     textAlign: "center",
     padding: "60px 40px",
     color: "#001ca1",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
   },
   highlightText: {
     fontWeight: "300",
@@ -250,18 +278,24 @@ const styles = (theme) => ({
     justifyContent: "flex-start",
     maxWidth: "85%",
     //marginTop: "40px",
-    [theme.breakpoints.up("md")]: {
-      //minWidth: "1400px",
-    },
     textAlign: "justify",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+
+      "& img": {
+        marginTop: "20px",
+      },
+    },
   },
 
   megastakeTextContainer: {
     display: "flex",
     flex: "1",
     flexDirection: "column",
-    marginRight: "40px",
     fontWeight: "300",
+    [theme.breakpoints.up("md")]: {
+      marginRight: "40px",
+    },
   },
 
   /////////////////////////////////////////////////////////// Container 4 (Features) ////////////////////////////////////////////////////////////
@@ -288,9 +322,9 @@ const styles = (theme) => ({
     width: "70%",
     justifyContent: "space-around",
     alignItems: "center",
-    flexDirection: "column",
-    [theme.breakpoints.up("sm")]: {
-      flexDirection: "row",
+    //flexDirection: "column",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
     },
   },
 
@@ -304,6 +338,9 @@ const styles = (theme) => ({
     textAlign: "center",
     flexDirection: "column",
     padding: "40px",
+    [theme.breakpoints.down("sm")]: {
+      padding: "20px",
+    },
 
     "& h3": {
       marginTop: "20px",
@@ -352,8 +389,8 @@ const styles = (theme) => ({
     justifyContent: "flex-start",
     maxWidth: "85%",
     //marginTop: "40px",
-    [theme.breakpoints.up("md")]: {
-      //minWidth: "1400px",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
     },
     textAlign: "justify",
   },
@@ -363,8 +400,10 @@ const styles = (theme) => ({
     flex: "1",
     alignItems: "flex-start",
     flexDirection: "column",
-    margin: "0 40px",
     fontWeight: "300",
+    [theme.breakpoints.up("sm")]: {
+      margin: "0 40px",
+    },
   },
 
   listItem: {
@@ -373,6 +412,12 @@ const styles = (theme) => ({
 
     "& img": {
       marginRight: "6px",
+    },
+  },
+
+  problemsIcon: {
+    [theme.breakpoints.down("sm")]: {
+      marginBottom: "20px",
     },
   },
 
@@ -401,8 +446,19 @@ const styles = (theme) => ({
     fontWeight: "300",
     padding: "5px 20px",
     marginTop: "80px",
+    textAlign: "center",
     "&:hover": {
       borderColor: colors.white,
+    },
+
+    [theme.breakpoints.down("sm")]: {
+      marginTop: "20px",
+    },
+  },
+
+  solutionsIcon: {
+    [theme.breakpoints.down("sm")]: {
+      marginTop: "20px",
     },
   },
 
@@ -454,6 +510,9 @@ const styles = (theme) => ({
     textAlign: "center",
     padding: "60px 40px",
     color: "#001ca1",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
   },
   highlightText: {
     fontWeight: "300",
@@ -500,6 +559,10 @@ const styles = (theme) => ({
     display: "flex",
     margin: "30px",
     cursor: "pointer",
+
+    [theme.breakpoints.down("md")]: {
+      margin: "10px",
+    },
   },
 
   /////////////////////////////////////////////////////////// Container 11 (Footer) ////////////////////////////////////////////////////////////
@@ -541,42 +604,26 @@ class Homepage extends Component {
             </div>
             <div className={classes.links}>
               <div className={classes.flexy}>
-                <Typography
-                  variant={"h4"}
-                  className={classes.link}
-                  onClick={() => {
-                    this.nav("platform");
-                  }}
-                >
-                  Features
-                </Typography>
-                <Typography
-                  variant={"h4"}
-                  className={classes.link}
-                  onClick={() => {
-                    this.nav("platform");
-                  }}
-                >
-                  Ecosystem
-                </Typography>
-                <Typography
-                  variant={"h4"}
-                  className={classes.link}
-                  onClick={() => {
-                    this.nav("platform");
-                  }}
-                >
-                  Team
-                </Typography>
-                <Typography
-                  variant={"h4"}
-                  className={classes.link}
-                  onClick={() => {
-                    this.nav("platform");
-                  }}
-                >
-                  Contact
-                </Typography>
+                <HashLink to="/home#features" smooth>
+                  <Typography variant={"h4"} className={classes.link}>
+                    Features
+                  </Typography>
+                </HashLink>
+                <HashLink to="/home#ecosystem" smooth>
+                  <Typography variant={"h4"} className={classes.link}>
+                    Ecosystem
+                  </Typography>
+                </HashLink>
+                <HashLink to="/home#team" smooth>
+                  <Typography variant={"h4"} className={classes.link}>
+                    Team
+                  </Typography>
+                </HashLink>
+                <HashLink to="/home#contact" smooth>
+                  <Typography variant={"h4"} className={classes.link}>
+                    Contact
+                  </Typography>
+                </HashLink>
                 <Typography
                   variant={"h4"}
                   className={classes.link}
@@ -628,9 +675,7 @@ class Homepage extends Component {
               <img
                 alt=""
                 src={require("../../assets/Rock-logo.png")}
-                height="64px"
-                className={classes.icon}
-                style={{ marginRight: "7px" }}
+                className={classes.assetIcon}
               />
             </div>
             <div>
@@ -645,9 +690,7 @@ class Homepage extends Component {
               <img
                 alt=""
                 src={require("../../assets/USDT-icon.png")}
-                height="64px"
-                className={classes.icon}
-                style={{ marginRight: "7px" }}
+                className={classes.assetIcon}
               />
             </div>
             <div>
@@ -662,7 +705,8 @@ class Homepage extends Component {
               <img
                 alt=""
                 src={require("../../assets/Container1Image.png")}
-                height="500px"
+                //height="500px"
+                style={{ maxHeight: "500px", maxWidth: "100%" }}
               />
             </div>
             <div className={classes.textContainer}>
@@ -713,7 +757,8 @@ class Homepage extends Component {
             <img
               alt=""
               src={require("../../assets/Container2Image.png")}
-              height="400px"
+              //height="400px"
+              style={{ maxHeight: "400px", maxWidth: "100%" }}
             />
           </div>
           <div className={classes.description}>
@@ -767,14 +812,15 @@ class Homepage extends Component {
               <img
                 alt=""
                 src={require("../../assets/Container3Image.png")}
-                height="400px"
+                //height="400px"
+                style={{ maxHeight: "400px", maxWidth: "100%" }}
               />
             </div>
           </div>
         </div>
 
         {/* ----------------------------------------------------------------------  Container 4 -------------------------------------------------------------------------------------- */}
-        <div className={classes.container4}>
+        <div className={classes.container4} id="features">
           <div className={classes.title}>
             <Typography variant={"h3"}>Features</Typography>
           </div>
@@ -845,7 +891,8 @@ class Homepage extends Component {
               <img
                 alt=""
                 src={require("../../assets/Container5Image.png")}
-                height="400px"
+                style={{ maxHeight: "400px", maxWidth: "100%" }}
+                className={classes.problemsIcon}
               />
             </div>
 
@@ -961,7 +1008,8 @@ class Homepage extends Component {
               <img
                 alt=""
                 src={require("../../assets/Container6Image.png")}
-                height="400px"
+                style={{ maxHeight: "400px", maxWidth: "100%" }}
+                className={classes.solutionsIcon}
               />
             </div>
           </div>
@@ -977,7 +1025,7 @@ class Homepage extends Component {
         </div>
 
         {/* ----------------------------------------------------------------------  Container 7 -------------------------------------------------------------------------------------- */}
-        <div className={classes.container7}>
+        <div className={classes.container7} id="ecosystem">
           <div className={classes.title}>
             <Typography variant={"h3"}>Ecosystem</Typography>
           </div>
@@ -987,30 +1035,31 @@ class Homepage extends Component {
           <img
             alt=""
             src={require("../../assets/Container7polkadotLogo1.png")}
-            height="70px"
+            //height="70px"
+            style={{ maxHeight: "70px", maxWidth: "100%" }}
           />
           <img
             alt=""
             src={require("../../assets/Container7ethereumLogo1.png")}
-            height="70px"
+            //height="70px"
+            style={{ maxHeight: "70px", maxWidth: "100%" }}
           />
           <div className={classes.ecosystemContainer}>
             <img
               alt=""
               src={require("../../assets/Container7polkadotLogo2.png")}
-              height="125px"
+              //height="125px"
+              style={{ maxHeight: "125px" }}
             />
             <img
               alt=""
               src={require("../../assets/Container7ethereumLogo2.png")}
-              height="100px"
+              //height="100px"
+              style={{ maxHeight: "100px" }}
             />
           </div>
           <div className={classes.description}>
-            <Typography
-              variant={"h4"}
-              style={{ fontSize: "17pt", marginTop: "50px" }}
-            >
+            <Typography variant={"h3"} style={{ marginTop: "50px" }}>
               LunaSwap
               <span className={classes.highlightText}>
                 {" "}
@@ -1071,7 +1120,7 @@ class Homepage extends Component {
         </div>
 
         {/* ----------------------------------------------------------------------  Container 9 -------------------------------------------------------------------------------------- */}
-        <div className={classes.container9}>
+        <div className={classes.container9} id="team">
           <div className={classes.title}>
             <Typography variant={"h3"}>Roadmap</Typography>
           </div>
@@ -1079,7 +1128,8 @@ class Homepage extends Component {
             <img
               alt=""
               src={require("../../assets/Container9Roadmap.png")}
-              height="400px"
+              //height="400px"
+              style={{ maxHeight: "400px", maxWidth: "100%" }}
             />
           </div>
 
@@ -1095,7 +1145,8 @@ class Homepage extends Component {
             <img
               alt=""
               src={require("../../assets/Container9Cards.png")}
-              height="400px"
+              //height="400px"
+              style={{ maxHeight: "400px", maxWidth: "100%" }}
             />
           </div>
           <div className={classes.description}>
@@ -1121,7 +1172,7 @@ class Homepage extends Component {
         </div>
 
         {/* ----------------------------------------------------------------------  Container 10 -------------------------------------------------------------------------------------- */}
-        <div className={classes.container10}>
+        <div className={classes.container10} id="contact">
           <div>
             <Typography variant={"h2"} className={classes.subtitle}>
               Contact Us
@@ -1176,45 +1227,34 @@ class Homepage extends Component {
         {/* ----------------------------------------------------------------------  Container 11 -------------------------------------------------------------------------------------- */}
         <div className={classes.container11}>
           <div className={classes.iconContainer}>
-            <img alt="" src={require("../../assets/Logo.png")} height="100px" />
+            <img
+              alt=""
+              src={require("../../assets/Logo.png")}
+              //height="100px"
+              style={{ maxHeight: "100px", maxWidth: "100%" }}
+            />
           </div>
-          <div className={`${classes.flexy} flexy`}>
-            <Typography
-              variant={"h4"}
-              className={`${classes.link} link`}
-              onClick={() => {
-                this.nav("platform");
-              }}
-            >
-              Features
-            </Typography>
-            <Typography
-              variant={"h4"}
-              className={`${classes.link} link`}
-              onClick={() => {
-                this.nav("platform");
-              }}
-            >
-              Ecosystem
-            </Typography>
-            <Typography
-              variant={"h4"}
-              className={`${classes.link} link`}
-              onClick={() => {
-                this.nav("platform");
-              }}
-            >
-              Team
-            </Typography>
-            <Typography
-              variant={"h4"}
-              className={`${classes.link} link`}
-              onClick={() => {
-                this.nav("platform");
-              }}
-            >
-              Contact
-            </Typography>
+          <div className={classes.flexy}>
+            <HashLink to="/home#features" smooth>
+              <Typography variant={"h4"} className={classes.link}>
+                Features
+              </Typography>
+            </HashLink>
+            <HashLink to="/home#ecosystem" smooth>
+              <Typography variant={"h4"} className={classes.link}>
+                Ecosystem
+              </Typography>
+            </HashLink>
+            <HashLink to="/home#team" smooth>
+              <Typography variant={"h4"} className={classes.link}>
+                Team
+              </Typography>
+            </HashLink>
+            <HashLink to="/home#contact" smooth>
+              <Typography variant={"h4"} className={classes.link}>
+                Contact
+              </Typography>
+            </HashLink>
           </div>
         </div>
       </div>

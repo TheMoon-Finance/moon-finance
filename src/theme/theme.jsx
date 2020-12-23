@@ -78,6 +78,9 @@ const iswapTheme = {
       WebkitFontSmoothing: "antialiased",
       MozOsxFontSmoothing: "grayscale",
       lineHeight: 1.2,
+      [breakpoints.down("sm")]: {
+        fontSize: "24px",
+      },
     },
     h3: {
       fontSize: "22px",
@@ -85,6 +88,9 @@ const iswapTheme = {
       WebkitFontSmoothing: "antialiased",
       MozOsxFontSmoothing: "grayscale",
       lineHeight: 1.2,
+      [breakpoints.down("sm")]: {
+        fontSize: "18px",
+      },
     },
     h4: {
       fontSize: "16px",
@@ -92,6 +98,9 @@ const iswapTheme = {
       WebkitFontSmoothing: "antialiased",
       MozOsxFontSmoothing: "grayscale",
       lineHeight: 1.2,
+      [breakpoints.down("sm")]: {
+        fontSize: "14px",
+      },
     },
     h5: {
       fontSize: "14px",
