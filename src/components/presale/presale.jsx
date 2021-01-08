@@ -153,13 +153,18 @@ const styles = (theme) => ({
     justifyContent: "flex-end",
     alignItems: "center",
   },
-  presale: {
+  logo: {
     display: "flex",
     //paddingBottom: "60px",
     alignItems: "center",
     flex: 1,
+
     [theme.breakpoints.down("md")]: {
       display: "none",
+    },
+
+    "& img": {
+      cursor: "pointer",
     },
   },
   walletAddress: {
@@ -175,7 +180,7 @@ const styles = (theme) => ({
       background: "rgba(47, 128, 237, 0.1)",
     },
     [theme.breakpoints.down("sm")]: {
-      display: "flex",
+      display: "none",
       position: "absolute",
       top: "90px",
       border: "1px solid " + colors.white,
@@ -261,6 +266,10 @@ const styles = (theme) => ({
     "& h3": {
       marginTop: "15px",
     },
+    [theme.breakpoints.down("sm")]: {
+      alignItems: "center",
+      textAlign: "center",
+    },
   },
 
   input: {
@@ -284,7 +293,7 @@ const styles = (theme) => ({
     borderRadius: "30px",
     backgroundColor: colors.white,
     borderColor: "white !important",
-    margin: "50px",
+    margin: "20px 50px 0px",
     width: "85%",
     "&:hover": {
       border: "1px solid",
@@ -308,6 +317,69 @@ const styles = (theme) => ({
     textTransform: "uppercase",
     textAlign: "center",
   },
+
+  row: {
+    width: "100%",
+    display: "flex",
+    flexWrap: "wrap",
+    maxWidth: "400px",
+    justifyContent: "center",
+    minWidth: "100%",
+    flexDirection: "row",
+    //alignItems: "center",
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+  },
+  referralTitle: {
+    padding: "12px",
+    borderWidth: "2px 1px 2px 2px",
+    border: "solid white",
+    borderRadius: "0.75rem 0 0 0.75rem",
+    background: "linear-gradient(0deg, #177bd3 0%, #06070a 100%)",
+    color: colors.white,
+    minWidth: "170px",
+  },
+  referralLink: {
+    padding: "12px",
+    border: "2px solid white",
+    background: colors.black,
+    color: "#1679d0",
+    minWidth: "35%",
+  },
+  referralCopy: {
+    padding: "12px",
+    border: "2px solid white",
+    borderRadius: "0 0.75rem 0.75rem 0",
+    background: colors.white,
+    color: colors.black,
+    minWidth: "170px",
+    textAlign: "center",
+    cursor: "pointer",
+    "&:hover": {
+      border: "1px solid",
+      borderColor: "#dbdbdb !important",
+      backgroundColor: colors.white,
+    },
+  },
+
+  disaclaimer: {
+    padding: "10px 20px",
+    border: "1px solid rgb(174, 174, 174)",
+    borderRadius: "0.75rem",
+    background: "linear-gradient(180deg, #177bd3 0%, #06070a 100%)",
+    color: colors.white,
+  },
+
+  refBalance: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    flex: 1,
+  },
+  goldBalance: {
+    color: "#e6a147",
+  },
 });
 
 const LightTooltip = withStyles((theme) => ({
@@ -327,12 +399,11 @@ class Presale extends Component {
     this.state = {
       modalOpen: false,
       account: store.getStore("account"),
-      projectAmount: "",
+      refLink: "",
       liquidityAmount: "",
-      tokenPrice: 1 / 9,
+      tokenPrice: 1 / 10,
     };
 
-    this.handleProjectAmountChange = this.handleProjectAmountChange.bind(this);
     this.handleLiquidityAmountChange = this.handleLiquidityAmountChange.bind(
       this
     );
@@ -354,6 +425,7 @@ class Presale extends Component {
   connectionConnected = () => {
     this.setState({ account: store.getStore("account") });
     this.setAddressEnsName();
+    this.getRefAddress();
   };
 
   connectionDisconnected = () => {
@@ -372,25 +444,28 @@ class Presale extends Component {
     }
   };
 
-  handleProjectAmountChange = (e) => {
-    this.setState({
-      projectAmount: e.target.value ? Math.abs(e.target.value) : "",
-    });
+  getRefAddress = () => {
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var ref = url.searchParams.get("ref");
+    console.log(ref);
+
+    this.setState({ refLink: ref });
+  };
+
+  copyRefLink = () => {
+    const el = document.createElement("textarea");
+    el.value = "https://www.themoon.finance?ref=" + this.state.account.address;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand("copy");
+    document.body.removeChild(el);
   };
 
   handleLiquidityAmountChange = (e) => {
     this.setState({
       liquidityAmount: e.target.value ? Math.abs(e.target.value) : "",
     });
-  };
-
-  buyToken = () => {
-    let amount = this.state.projectAmount * this.state.tokenPrice;
-    if (isMobile) {
-      Swal.fire("Please visit desktop to connect MetaMask wallet");
-    } else {
-      store.buyToken(store.getStore("account"), amount);
-    }
   };
 
   addLiguidity = () => {
@@ -416,34 +491,14 @@ class Presale extends Component {
     return (
       <div className={classes.root}>
         <div className={`${classes.header} header`}>
-          <div className={`${classes.presale} presale`}>
-            {/*<div>
-              {address && (
-                <Typography
-                  variant={"h4"}
-                  className={classes.walletAddress}
-                  noWrap
-                  onClick={this.addressClicked}
-                >
-                  {addressAlias}
-                  <div className={classes.connectedDot}></div>
-                </Typography>
-              )}
-              {!address && (
-                <Typography
-                  variant={"h4"}
-                  className={classes.walletAddress}
-                  noWrap
-                  onClick={this.addressClicked}
-                >
-                  Connect your wallet
-                </Typography>
-              )}
-            </div>*/}
+          <div className={classes.logo}>
             <img
+              onClick={() => {
+                this.nav("/");
+              }}
               alt=""
-              src={require("../../assets/Moon-logo.png")}
-              height="100px"
+              src={require("../../assets/Logo.png")}
+              height="70px"
             />
           </div>
 
@@ -463,7 +518,7 @@ class Presale extends Component {
               <Typography variant={"h4"} className={`${classes.link} link`}>
                 <a
                   //href={WhitePaper}
-                  download="Generation_Finance_White_Paper.pdf"
+                  download="Moon_Finance_White_Paper.pdf"
                   className={`${classes.downloadFile} downloadFile`}
                 >
                   WhitePaper
@@ -497,165 +552,79 @@ class Presale extends Component {
         </div>
 
         <div className={classes.investedContainer}>
-          <div className={classes.portfolioContainer}>
-            {/*<div className={classes.titleBalance}>
-              <div className={classes.contribute}>
-                <Typography variant={"h3"}>
-                  Contribute to the project
-                </Typography>
-              </div>
-              <div className={classes.contract}>
-                <Typography variant={"h3"}>
-                  This contract IS FOR THE TEAM TO DEVELOP THE PROTOCOL AND
-                  LAUNCH THE VAULTS
-                </Typography>
-              </div>
-              <div className={classes.token}>
-                <Typography variant={"h3"}>ROCK tokens</Typography>
-              </div>
-              <div className={classes.buyModal}>
-                <Typography variant={"h3"}>ROCK AMOUNT</Typography>
-                <TextField
-                  fullWidth
-                  className={classes.actionInput}
-                  value={this.state.projectAmount}
-                  onChange={this.handleProjectAmountChange}
+          {address && (
+            <div className={classes.row} style={{ marginBottom: "30px" }}>
+              <Typography variant="h4" className={classes.referralTitle}>
+                Your Referral Link
+              </Typography>
 
-                  placeholder={"0 ROCK"}
-                  variant="outlined"
-                  type="number"
-                  InputProps={{
-                    inputProps: { min: 0 },
-                    classes: {
-                      root: classes.cssOutlinedInput,
-                      input: classes.input,
-                      focused: classes.cssFocused,
-                      notchedOutline: classes.notchedOutline,
-                    },
-                  }}
-                />
-                <Typography variant={"h3"}>YOUR WALLET ADDRESS</Typography>
-                <TextField
-                  fullWidth
-                  className={classes.actionInput}
-                  value={addressAlias}
+              <Typography variant="h4" className={classes.referralLink}>
+                {"https://www.themoon.finance/presale?ref=" + address}
+              </Typography>
 
-                  placeholder={"0x..."}
-                  variant="outlined"
-                  InputProps={{
-                    classes: {
-                      root: classes.cssOutlinedInput,
-                      input: classes.input,
-                      focused: classes.cssFocused,
-                      notchedOutline: classes.notchedOutline,
-                    },
-                  }}
-                />
-                <Typography variant={"h3"} style={{ color: "#5e9767" }}>
-                  Buy Price: 0.08333333 ETH | 1 ROCK
-                </Typography>
-                <Typography variant={"h4"} style={{ color: "#161616" }}>
-                  {"You must send"}{" "}
-                  {this.state.projectAmount * this.state.tokenPrice}{" "}
-                  {"ETH for "}
-                  {this.state.projectAmount ? this.state.projectAmount : 0}{" "}
-                  {"ROCK"}
-                </Typography>
+              <Button
+                className={classes.referralCopy}
+                variant="outlined"
+                color="primary"
+                onClick={this.copyRefLink}
+              >
+                <Typography variant="h4">Copy</Typography>
+              </Button>
+            </div>
+          )}
 
-                {isMobile && (
-                  <Button
-                    className={classes.actionButton}
-                    variant="outlined"
-                    color="primary"
-                    onClick={this.buyToken}
-                    fullWidth
-                  >
-                    <Typography className={classes.buttonText} variant={"h4"}>
-                      BUY ROCK TOKENS
-                    </Typography>
-                  </Button>
-                )}
-                {!isMobile && address && (
-                  <Button
-                    className={classes.actionButton}
-                    variant="outlined"
-                    color="primary"
-                    onClick={this.buyToken}
-                    disabled={!address}
-                    fullWidth
-                  >
-                    <Typography className={classes.buttonText} variant={"h4"}>
-                      BUY ROCK TOKENS
-                    </Typography>
-                  </Button>
-                )}
-                {!isMobile && !address && (
-                  <LightTooltip title="please connect your wallet to BUY ROCK TOKENS">
-                    <span>
-                      <Button
-                        className={classes.actionButton}
-                        variant="outlined"
-                        color="primary"
-                        onClick={this.buyToken}
-                        disabled={!address}
-                        fullWidth
-                      >
-                        <Typography
-                          className={classes.buttonText}
-                          variant={"h4"}
-                        >
-                          BUY ROCK TOKENS
-                        </Typography>
-                      </Button>
-                    </span>
-                  </LightTooltip>
-                )}
-              </div>
-              <div className={classes.description}>
-                <Typography variant={"h3"}>
-                  By Contributing to our project You will drive the development
-                  forward making genration finance a success and we have you to
-                  thanks for that.
-                </Typography>
+          {address && (
+            <div className={classes.row} style={{ marginBottom: "30px" }}>
+              <div className={classes.disaclaimer}>
+                <div className={classes.refBalance}>
+                  <Typography variant="h3" className={classes.goldBalance}>
+                    0.000000 ROCK
+                  </Typography>
+                  <Typography variant="h4">Your Referral Earnings</Typography>
+                  <Typography variant="h4">Value: 0 USD</Typography>
+                </div>
               </div>
             </div>
+          )}
 
-            <div className={classes.between}></div>*/}
-
+          <div className={classes.portfolioContainer}>
             <div className={classes.titleBalance}>
               <div className={classes.contribute}>
-                <Typography variant={"h2"}>
-                  Contribute to the liquidity pool
-                </Typography>
+                <Typography variant={"h2"}>The Moon Finance Presale</Typography>
               </div>
-              <div className={classes.contract}>
+              {/*<div className={classes.contract}>
                 <Typography variant={"h3"}>
                   The contract is for direct uniswap liquidity only
                 </Typography>
-              </div>
+              </div>*/}
               <div className={classes.token}>
                 <Typography variant={"h3"}>ROCK tokens</Typography>
               </div>
               <div className={classes.buyModal}>
-                <Typography variant={"h3"}>YOUR WALLET ADDRESS</Typography>
-                <TextField
-                  fullWidth
-                  className={classes.actionInput}
-                  value={addressAlias}
-                  /*onChange={(e) => {
+                {this.state.refLink && (
+                  <div>
+                    <Typography variant={"h3"}>REFERRAL</Typography>
+                    <TextField
+                      fullWidth
+                      className={classes.actionInput}
+                      value={this.state.refLink}
+                      /*onChange={(e) => {
                     this.props.setSendAmount(e.target.value);
                   }}*/
-                  placeholder={"0x..."}
-                  variant="outlined"
-                  InputProps={{
-                    classes: {
-                      root: classes.cssOutlinedInput,
-                      input: classes.input,
-                      focused: classes.cssFocused,
-                      notchedOutline: classes.notchedOutline,
-                    },
-                  }}
-                />
+                      disabled={true}
+                      placeholder={"0x..."}
+                      variant="outlined"
+                      InputProps={{
+                        classes: {
+                          root: classes.cssOutlinedInput,
+                          input: classes.input,
+                          focused: classes.cssFocused,
+                          notchedOutline: classes.notchedOutline,
+                        },
+                      }}
+                    />
+                  </div>
+                )}
                 <Typography variant={"h3"}>ROCK AMOUNT</Typography>
                 <TextField
                   fullWidth
@@ -679,7 +648,7 @@ class Presale extends Component {
                   }}
                 />
                 <Typography variant={"h3"} style={{ color: "#fff" }}>
-                  Buy Price: 0.11111111 ETH | 1 ROCK
+                  Buy Price: 0.1 ETH | 1 ROCK
                 </Typography>
                 <Typography
                   variant={"h4"}
@@ -702,7 +671,7 @@ class Presale extends Component {
                     fullWidth
                   >
                     <Typography className={classes.buttonText} variant={"h4"}>
-                      ADD LIQUIDITY TO THE BUILDING EVENT
+                      BUY ROCK
                     </Typography>
                   </Button>
                 )}
@@ -716,12 +685,12 @@ class Presale extends Component {
                     fullWidth
                   >
                     <Typography className={classes.buttonText} variant={"h4"}>
-                      ADD LIQUIDITY TO THE BUILDING EVENT
+                      BUY ROCK
                     </Typography>
                   </Button>
                 )}
                 {!isMobile && !address && (
-                  <LightTooltip title="please connect your wallet to ADD LIQUIDITY AND GET ROCK TOKENS">
+                  <LightTooltip title="please connect your wallet to BUY ROCK TOKENS">
                     <span>
                       <Button
                         className={classes.actionButton}
@@ -735,7 +704,7 @@ class Presale extends Component {
                           className={classes.buttonText}
                           variant={"h4"}
                         >
-                          ADD LIQUIDITY TO THE BUILDING EVENT
+                          BUY ROCK
                         </Typography>
                       </Button>
                     </span>
@@ -744,9 +713,12 @@ class Presale extends Component {
               </div>
               <div className={classes.description}>
                 <Typography variant={"h4"}>
-                  By Contributing to the liquidity building event you are
-                  ensuring the success of the token and the growth of genration
-                  finance is assured
+                  Allocation of funds raised: 80% will be going to liquidity for
+                  Uniswap.
+                  <br />
+                  10% will be allocated to market maker bots on day one.
+                  <br />
+                  10% will be allocated to exchange listings.
                 </Typography>
               </div>
               <div

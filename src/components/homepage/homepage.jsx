@@ -39,7 +39,7 @@ const styles = (theme) => ({
     textAlign: "initial",
   },
 
-  ///////////////////////////////////////////////// HEADER////////////////////////////////////////////////////
+  ///////////////////////////////////////////////// HEADER ////////////////////////////////////////////////////
 
   header: {
     width: "100%",
@@ -592,7 +592,7 @@ class Homepage extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        {/* ----------------------------------------------------------------------  Container 1 -------------------------------------------------------------------------------------- */}
+        {/* ----------------------------------------------------------------------  Container 1  -------------------------------------------------------------------------------------- */}
         <div className={classes.container1}>
           <div className={classes.header}>
             <div className={classes.presale}>
@@ -604,6 +604,16 @@ class Homepage extends Component {
             </div>
             <div className={classes.links}>
               <div className={classes.flexy}>
+                <Typography
+                  variant={"h4"}
+                  className={classes.link}
+                  style={{ color: "#f8ce00ff" }}
+                  onClick={() => {
+                    this.nav("presale");
+                  }}
+                >
+                  Presale
+                </Typography>
                 <HashLink to="/home#features" smooth>
                   <Typography variant={"h4"} className={classes.link}>
                     Features
@@ -612,11 +622,6 @@ class Homepage extends Component {
                 <HashLink to="/home#ecosystem" smooth>
                   <Typography variant={"h4"} className={classes.link}>
                     Ecosystem
-                  </Typography>
-                </HashLink>
-                <HashLink to="/home#team" smooth>
-                  <Typography variant={"h4"} className={classes.link}>
-                    Team
                   </Typography>
                 </HashLink>
                 <HashLink to="/home#contact" smooth>
@@ -635,7 +640,7 @@ class Homepage extends Component {
                 >
                   <a
                     //href={WhitePaper}
-                    download="Generation_Finance_White_Paper.pdf"
+                    download="Moon_Finance_White_Paper.pdf"
                     className={`${classes.downloadFile} downloadFile`}
                   >
                     Litepaper
@@ -1120,7 +1125,7 @@ class Homepage extends Component {
         </div>
 
         {/* ----------------------------------------------------------------------  Container 9 -------------------------------------------------------------------------------------- */}
-        <div className={classes.container9} id="team">
+        <div className={classes.container9}>
           <div className={classes.title}>
             <Typography variant={"h3"}>Roadmap</Typography>
           </div>
@@ -1182,7 +1187,7 @@ class Homepage extends Component {
             <div
               className={classes.contactLink}
               onClick={() =>
-                window.open("https://t.me/generationygem", "_blank")
+                window.open("https://twitter.com/finance_moon", "_blank")
               }
             >
               <img
@@ -1195,7 +1200,7 @@ class Homepage extends Component {
             <div
               className={classes.contactLink}
               onClick={() =>
-                window.open("https://t.me/generationygem", "_blank")
+                window.open("https://t.me/themoonfinance", "_blank")
               }
             >
               <img
@@ -1209,7 +1214,7 @@ class Homepage extends Component {
               className={classes.contactLink}
               onClick={() =>
                 window.open(
-                  "https://medium.com/@ygem18/the-official-fork-of-yearn-finance-is-here-5609d20cb0dc",
+                  "https://medium.com/@themoonfinance74/introduction-to-the-moon-finance-add764c104b3",
                   "_blank"
                 )
               }
@@ -1243,11 +1248,6 @@ class Homepage extends Component {
             <HashLink to="/home#ecosystem" smooth>
               <Typography variant={"h4"} className={classes.link}>
                 Ecosystem
-              </Typography>
-            </HashLink>
-            <HashLink to="/home#team" smooth>
-              <Typography variant={"h4"} className={classes.link}>
-                Team
               </Typography>
             </HashLink>
             <HashLink to="/home#contact" smooth>

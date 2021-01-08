@@ -86,6 +86,7 @@ const styles = (theme) => ({
     "& img": {
       maxHeight: "107px",
       marginLeft: "20px",
+      cursor: "pointer",
     },
   },
 
@@ -270,7 +271,13 @@ class Platform extends Component {
     return (
       <div className={classes.root}>
         <div className={`${classes.logo}`}>
-          <img src={Logo} alt="Logo_Icon" />
+          <img
+            onClick={() => {
+              this.nav("/");
+            }}
+            src={Logo}
+            alt="Logo_Icon"
+          />
 
           <div className={classes.socials}>
             <div

@@ -193,7 +193,7 @@ class Footer extends Component {
             <div
               className={classes.link}
               onClick={() =>
-                window.open("https://twitter.com/Generationfina2", "_blank")
+                window.open("https://twitter.com/finance_moon", "_blank")
               }
             >
               <img
@@ -207,7 +207,7 @@ class Footer extends Component {
               className={classes.link}
               onClick={() =>
                 window.open(
-                  "https://medium.com/@ygem18/the-official-fork-of-yearn-finance-is-here-5609d20cb0dc",
+                  "https://medium.com/@themoonfinance74/introduction-to-the-moon-finance-add764c104b3",
                   "_blank"
                 )
               }
@@ -222,7 +222,7 @@ class Footer extends Component {
             <div
               className={classes.link}
               onClick={() =>
-                window.open("https://t.me/generationygem", "_blank")
+                window.open("https://t.me/themoonfinance", "_blank")
               }
             >
               <img
@@ -235,7 +235,7 @@ class Footer extends Component {
             <div
               className={classes.link}
               onClick={() =>
-                window.open("https://github.com/YGEM-finance", "_blank")
+                window.open("https://github.com/TheMoon-Finance", "_blank")
               }
             >
               <img

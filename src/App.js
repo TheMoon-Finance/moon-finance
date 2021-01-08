@@ -128,22 +128,19 @@ class App extends Component {
                 <IEO />
                 <Footer />
               </Route>
-              {/*<Route path='/staking'>
+              <Route path='/staking'>
                 <Header />
                 <Staking />
                 <Footer />
-              </Route>*/}
-              {/*<Route path="/platform">
-                <Platform />
-              </Route>*/}
-
-              <Route path="/home">
-                <Homepage />
               </Route>
-
-              <Route path="/">
-                {/*<Presale />*/}
+              <Route path="/platform">
                 <Platform />
+              </Route>
+              <Route path="/presale">
+                <Presale />
+              </Route>
+              <Route path="/">
+                <Homepage />
               </Route>
             </Switch>
           </div>

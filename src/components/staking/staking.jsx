@@ -31,6 +31,13 @@ const styles = (theme) => ({
     //justifyContent: "flex-start",
     justifyContent: "center",
     alignItems: "center",
+
+    "& h3": {
+      fontWeight: "300",
+    },
+    "& h4": {
+      fontWeight: "300",
+    },
   },
   investedContainerLoggedOut: {
     display: "flex",
@@ -67,6 +74,7 @@ const styles = (theme) => ({
       width: "100%",
     },
   },
+
   header: {
     width: "100%",
     top: "0",
@@ -80,27 +88,41 @@ const styles = (theme) => ({
   gray: {
     color: colors.darkGray,
   },
+
   between: {
     width: "40px",
     height: "40px",
   },
+
   titleBalance: {
-    padding: "42px 30px",
-    //background: colors.white,
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
     justifyContent: "center",
     flex: 1,
   },
+
+  actionContent: {
+    display: "flex",
+    flexDirection: "column",
+    flex: 1,
+    padding: "20px 40px",
+    textAlign: "center",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
   prettyAlign: {
     display: "flex",
     alignItems: "center",
+    flex: "1",
+    padding: "0px 30px",
   },
+
   infoIcon: {
     fontSize: "1em",
     marginRight: "6px",
   },
+
   heading: {
     //marginTop: "40px",
     display: "flex",
@@ -111,6 +133,7 @@ const styles = (theme) => ({
     color: "#2236cb",
     textTransform: "uppercase",
   },
+
   headingName: {
     display: "flex",
     alignItems: "center",
@@ -120,10 +143,12 @@ const styles = (theme) => ({
       flex: 1,
     },
   },
+
   flexy: {
     display: "flex",
     alignItems: "center",
   },
+
   vault: {
     borderBottom: "1px solid rgba(25, 101, 233, 0.2)",
     padding: "12px",
@@ -131,22 +156,27 @@ const styles = (theme) => ({
       borderBottom: "none",
     },
   },
+
   sectionHeading: {
     color: colors.darkGray,
     width: "100%",
     marginLeft: "54px",
   },
+
   inline: {
     display: "flex",
     alignItems: "baseline",
   },
+
   symbol: {
     paddingLeft: "6px",
   },
+
   symbolAt: {
     paddingLeft: "6px",
     color: colors.darkGray,
   },
+
   basedOnContainer: {
     display: "flex",
     width: "100%",
@@ -244,9 +274,9 @@ const styles = (theme) => ({
     textTransform: "uppercase",
     textAlign: "center",
   },
-  token: {
+  title: {
     width: "100%",
-    height: "60px",
+    minHeight: "35px",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -255,45 +285,14 @@ const styles = (theme) => ({
     textTransform: "uppercase",
     textAlign: "center",
   },
-  /*buyModal: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    backgroundColor: "#2236cb",
-    color: colors.white,
-    padding: "20px",
-    "& h3": {
-      marginTop: "15px",
-    },
-  },*/
-
-  /*input: {
-    "&::placeholder": {
-      color: colors.white,
-    },
-    color: colors.white,
-  },
-
-  notchedOutline: {
-    border: "1px solid",
-    borderColor: "white !important",
-  },
-  cssOutlinedInput: {
-    "& input": {
-      color: colors.white,
-    },
-    "& input:disabled": {
-      color: "#78797b",
-    },
-  },*/
-
   input: {
     "&::placeholder": {
       color: "#9b9b9b",
     },
     color: "#444444",
-    backgroundColor: colors.black,
+    backgroundColor: "#051524",
     borderRadius: "30px !important",
+    fontWeight: "300",
   },
   cssOutlinedInput: {
     borderRadius: "30px !important",
@@ -306,16 +305,42 @@ const styles = (theme) => ({
   },
   notchedOutline: {
     border: "1px solid",
-    borderColor: "black !important",
+    borderColor: "#051524 !important",
   },
 
-  disaclaimer: {
+  referralTitle: {
     padding: "12px",
-    border: "1px solid rgb(174, 174, 174)",
-    borderRadius: "0.75rem",
+    borderWidth: "2px 1px 2px 2px",
+    border: "solid white",
+    borderRadius: "0.75rem 0 0 0.75rem",
     marginBottom: "24px",
     background: "linear-gradient(0deg, #177bd3 0%, #06070a 100%)",
     color: colors.white,
+    minWidth: "170px",
+  },
+  referralLink: {
+    padding: "12px",
+    border: "2px solid white",
+    marginBottom: "24px",
+    background: colors.black,
+    color: "#1679d0",
+    minWidth: "40%",
+  },
+  referralCopy: {
+    padding: "12px",
+    border: "2px solid white",
+    borderRadius: "0 0.75rem 0.75rem 0",
+    marginBottom: "24px",
+    background: colors.white,
+    color: colors.black,
+    minWidth: "170px",
+    textAlign: "center",
+    cursor: "pointer",
+    "&:hover": {
+      border: "1px solid",
+      borderColor: "#dbdbdb !important",
+      backgroundColor: colors.white,
+    },
   },
 
   sepperator: {
@@ -329,7 +354,7 @@ const styles = (theme) => ({
     borderRadius: "30px",
     backgroundColor: colors.white,
     borderColor: "white !important",
-    marginTop: "50px",
+    marginTop: "30px",
     width: "85%",
     "&:hover": {
       border: "1px solid",
@@ -339,7 +364,7 @@ const styles = (theme) => ({
   },
 
   buttonText: {
-    fontSize: "24px",
+    fontSize: "14px",
     fontWeight: "500",
   },
 
@@ -354,13 +379,13 @@ const styles = (theme) => ({
     flexWrap: "wrap",
     maxWidth: "400px",
     justifyContent: "center",
-    minWidth: "100%",
+    minWidth: "85%",
     flexDirection: "column",
     alignItems: "center",
     //marginTop: "40px",
   },
 
-  buyModal: {
+  row: {
     width: "100%",
     display: "flex",
     flexWrap: "wrap",
@@ -368,7 +393,7 @@ const styles = (theme) => ({
     justifyContent: "center",
     minWidth: "100%",
     flexDirection: "row",
-    alignItems: "center",
+    //alignItems: "center",
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
     },
@@ -378,14 +403,34 @@ const styles = (theme) => ({
     flex: 1,
     display: "flex",
     flexWrap: "wrap",
-    //padding: "42px 30px",
-    //borderRadius: "50px",
     maxWidth: "500px",
+    alignItems: "center",
     justifyContent: "center",
     background: "linear-gradient(-7deg, #177bd3 0%, #06070a 100%)",
-    //border: "2px solid #ffffff",
     marginBottom: "30px",
     color: colors.white,
+    padding: "20px 30px",
+  },
+
+  goldBalance: {
+    color: "#e6a147",
+    margin: "10px 0 2px",
+  },
+
+  actionContainer: {
+    flex: 1,
+    display: "flex",
+    flexWrap: "wrap",
+    maxWidth: "500px",
+    alignItems: "center",
+    justifyContent: "center",
+    background: "linear-gradient(-7deg, #177bd3 0%, #06070a 100%)",
+    marginBottom: "30px",
+    color: colors.white,
+  },
+
+  actionInput: {
+    marginBottom: "10px",
   },
 
   inputCardHeading: {
@@ -395,6 +440,27 @@ const styles = (theme) => ({
 
   unstakeAmount: {
     display: "flex",
+  },
+
+  buttonContainer: {
+    display: "flex",
+    width: "100%",
+    padding: "0 40px",
+    justifyContent: "center",
+  },
+
+  withdrawButton: {
+    color: colors.black,
+    borderRadius: "30px",
+    backgroundColor: "#55ffac",
+    borderColor: "#55ffac !important",
+    width: "85%",
+    //marginRight: "20px",
+    "&:hover": {
+      border: "1px solid",
+      borderColor: "#dbdbdb !important",
+      backgroundColor: "#55ffac",
+    },
   },
 });
 
@@ -455,6 +521,15 @@ class Staking extends Component {
     this.setState({ account: store.getStore("account") });
 
     this.setState({ unstakeAmount: 0, reward: 0 });
+  };
+
+  copyRefLink = () => {
+    const el = document.createElement("textarea");
+    el.value = "https://etherumiron=sldjkfndjvkndfjkvndfknfjdfv";
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand("copy");
+    document.body.removeChild(el);
   };
 
   setAddressEnsName = async () => {
@@ -579,27 +654,107 @@ class Staking extends Component {
     return (
       <div className={classes.root}>
         <div className={classes.card}>
-          {/*<Typography variant={"h4"} className={classes.disaclaimer}>
-            Get 200% APY on your ROCK
-          </Typography>*/}
-          <div className={classes.buyModal}>
+          <div className={classes.row} style={{ marginBottom: "30px" }}>
+            <Typography variant="h4" className={classes.referralTitle}>
+              Your Referral Link
+            </Typography>
+
+            <Typography variant="h4" className={classes.referralLink}>
+              https://etherumiron=sldjkfndjvkndfjkvndfknfjdfv
+            </Typography>
+
+            <Button
+              className={classes.referralCopy}
+              variant="outlined"
+              color="primary"
+              onClick={this.copyRefLink}
+            >
+              <Typography variant="h4">Copy</Typography>
+            </Button>
+          </div>
+          <div className={classes.row}>
+            {/*----------------------------------------------------------------------------------------------------------------------------------------------------------- */}
+
             <Card className={classes.iHaveContainer}>
-              <div className={classes.token}>
-                <Typography variant={"h3"}>Stake</Typography>
-              </div>
               <div className={classes.titleBalance}>
-                <Typography variant="h3" className={classes.inputCardHeading}>
-                  SEND AMOUNT
+                <Typography variant="h3" className={classes.goldBalance}>
+                  23360.8676 ROCK
                 </Typography>
+                <Typography variant="h4">Contract Market Cap</Typography>
+                <Typography variant="h4">Value: 9,242,026 USD</Typography>
+              </div>
+              <img
+                alt=""
+                src={require("../../assets/eth_gold_icon.png")}
+                height={"90px"}
+              />
+            </Card>
+
+            {/*----------------------------------------------------------------------------------------------------------------------------------------------------------- */}
+            <div className={classes.between}></div>
+
+            <Card className={classes.iHaveContainer}>
+              <div className={classes.titleBalance}>
+                <Typography variant="h3" className={classes.goldBalance}>
+                  103.767 ROCK
+                </Typography>
+                <Typography variant="h4">Your Tokens</Typography>
+                <Typography variant="h4">Value: 9,242,026 USD</Typography>
+              </div>
+              <img
+                alt=""
+                src={require("../../assets/Rock_gold_icon.png")}
+                height={"90px"}
+              />
+            </Card>
+
+            {/*----------------------------------------------------------------------------------------------------------------------------------------------------------- */}
+            <div className={classes.between}></div>
+
+            <Card className={classes.iHaveContainer}>
+              <div
+                className={classes.titleBalance}
+                style={{ paddingRight: "20px" }}
+              >
+                <Typography variant="h3" className={classes.goldBalance}>
+                  0.347832 USDT
+                </Typography>
+                <Typography variant="h4">Your Dividends Earnings</Typography>
+                <Typography variant="h4">Value: 137.61 USD</Typography>
+              </div>
+              <div
+                style={{
+                  width: "3px",
+                  height: "130px",
+                  backgroundColor: "white",
+                }}
+              ></div>
+              <div
+                className={classes.titleBalance}
+                style={{ paddingLeft: "20px" }}
+              >
+                <Typography variant="h3" className={classes.goldBalance}>
+                  0.000000 ROCK
+                </Typography>
+                <Typography variant="h4">Your Referral Earnings</Typography>
+                <Typography variant="h4">Value: 0 USD</Typography>
+              </div>
+            </Card>
+          </div>
+
+          {/*----------------------------------------------------------------------------------------------------------------------------------------------------------- */}
+          <div className={classes.row}>
+            <Card className={classes.actionContainer}>
+              <div className={classes.title}>
+                <Typography variant={"h3"}>STAKE ROCK</Typography>
+              </div>
+              <div className={classes.actionContent}>
                 <TextField
                   fullWidth
                   className={classes.actionInput}
                   value={this.state.stakeAmount}
                   onChange={this.handleStakeAmountChange}
-                  /*onChange={(e) => {
-                    this.props.setSendAmount(e.target.value);
-                  }}*/
-                  placeholder={"0 ROCK"}
+                  placeholder={"AMOUNT OF ETH"}
                   variant="outlined"
                   type="number"
                   InputProps={{
@@ -612,136 +767,47 @@ class Staking extends Component {
                     },
                   }}
                 />
-                <Typography
-                  variant="h3"
-                  className={classes.inputCardHeading}
-                  style={{ marginTop: "30px" }}
-                >
-                  YOUR WALLET ADDRESS
-                </Typography>
-                <TextField
-                  fullWidth
-                  className={classes.actionInput}
-                  value={addressAlias || ""}
-                  /*onChange={(e) => {
-                    this.props.setSendAmount(e.target.value);
-                  }}*/
-                  placeholder={"0x..."}
-                  disabled
-                  variant="outlined"
-                  InputProps={{
-                    classes: {
-                      root: classes.cssOutlinedInput,
-                      input: classes.input,
-                      focused: classes.cssFocused,
-                      notchedOutline: classes.notchedOutline,
-                    },
-                  }}
-                />
 
-                {!isMobile && address && (
-                  <Button
-                    className={classes.actionButton}
-                    variant="outlined"
-                    color="primary"
-                    //onClick={this.stake}
-                    disabled={!address}
-                    fullWidth
-                  >
-                    <Typography className={classes.buttonText} variant={"h4"}>
-                      STAKE
-                    </Typography>
-                  </Button>
-                )}
+                {/*<Typography variant="h4" className={classes.buyPrice}>
+                  Buy Price
+                </Typography>
+                <Typography variant="h4" className={classes.buyPrice}>
+                  0.022800 ETH | 9.02 USD
+                </Typography>*/}
+
+                <Button
+                  className={classes.actionButton}
+                  variant="outlined"
+                  color="primary"
+                  disabled={!address}
+                  fullWidth
+                >
+                  <Typography className={classes.buttonText} variant={"h4"}>
+                    STAKE
+                  </Typography>
+                </Button>
               </div>
             </Card>
 
+            {/*----------------------------------------------------------------------------------------------------------------------------------------------------------- */}
             <div className={classes.between}></div>
 
-            <Card className={classes.iHaveContainer}>
-              <div className={classes.token}>
-                <Typography variant={"h3"}>Unstake</Typography>
+            <Card className={classes.actionContainer}>
+              <div className={classes.title}>
+                <Typography variant={"h3"}>UNSTAKE ROCK</Typography>
               </div>
-              <div className={classes.titleBalance}>
-                <div className={classes.unstakeAmount}>
-                  <div>
-                    <Typography
-                      variant="h3"
-                      className={classes.inputCardHeading}
-                    >
-                      STAKED
-                    </Typography>
-                    <TextField
-                      fullWidth
-                      className={classes.actionInput}
-                      value={this.state.unstakeAmount}
-                      onChange={this.handleUnstakeAmountChange}
-                      placeholder={"0 ROCK"}
-                      variant="outlined"
-                      type="number"
-                      disabled
-                      InputProps={{
-                        inputProps: { min: 0 },
-                        classes: {
-                          root: classes.cssOutlinedInput,
-                          input: classes.input,
-                          focused: classes.cssFocused,
-                          notchedOutline: classes.notchedOutline,
-                        },
-                      }}
-                    />
-                  </div>
-
-                  <div className={classes.between}></div>
-
-                  <div>
-                    <Typography
-                      variant="h3"
-                      className={classes.inputCardHeading}
-                    >
-                      REWARD
-                    </Typography>
-                    <TextField
-                      fullWidth
-                      className={classes.actionInput}
-                      value={this.state.reward}
-                      onChange={this.handleUnstakeAmountChange}
-                      /*onChange={(e) => {
-                    this.props.setSendAmount(e.target.value);
-                  }}*/
-                      placeholder={"0 ROCK"}
-                      variant="outlined"
-                      disabled
-                      InputProps={{
-                        inputProps: { min: 0 },
-                        classes: {
-                          root: classes.cssOutlinedInput,
-                          input: classes.input,
-                          focused: classes.cssFocused,
-                          notchedOutline: classes.notchedOutline,
-                        },
-                      }}
-                    />
-                  </div>
-                </div>
-                <Typography
-                  variant="h3"
-                  className={classes.inputCardHeading}
-                  style={{ marginTop: "30px" }}
-                >
-                  YOUR WALLET ADDRESS
-                </Typography>
+              <div className={classes.actionContent}>
                 <TextField
                   fullWidth
                   className={classes.actionInput}
-                  value={addressAlias || ""}
-                  /*onChange={(e) => {
-                    this.props.setSendAmount(e.target.value);
-                  }}*/
-                  placeholder={"0x..."}
-                  disabled
+                  value={this.state.unstakeAmount}
+                  onChange={this.handleUnstakeAmountChange}
+                  placeholder={"AMOUNT OF ETH"}
                   variant="outlined"
+                  type="number"
+                  disabled
                   InputProps={{
+                    inputProps: { min: 0 },
                     classes: {
                       root: classes.cssOutlinedInput,
                       input: classes.input,
@@ -750,20 +816,67 @@ class Staking extends Component {
                     },
                   }}
                 />
-                {!isMobile && address && (
-                  <Button
-                    className={classes.actionButton}
-                    variant="outlined"
-                    color="primary"
-                    //onClick={this.unstake}
-                    disabled={!address}
-                    fullWidth
-                  >
-                    <Typography className={classes.buttonText} variant={"h4"}>
-                      UNSTAKE
-                    </Typography>
-                  </Button>
-                )}
+
+                {/*<Typography variant="h4" className={classes.buyPrice}>
+                  Sell Price
+                </Typography>
+                <Typography variant="h4" className={classes.buyPrice}>
+                  0.022800 ETH | 9.02 USD
+                </Typography>*/}
+
+                <Button
+                  className={classes.actionButton}
+                  variant="outlined"
+                  color="primary"
+                  //onClick={this.unstake}
+                  disabled={!address}
+                  fullWidth
+                >
+                  <Typography className={classes.buttonText} variant={"h4"}>
+                    UNSTAKE
+                  </Typography>
+                </Button>
+              </div>
+            </Card>
+
+            {/*----------------------------------------------------------------------------------------------------------------------------------------------------------- */}
+            <div className={classes.between}></div>
+
+            <Card className={classes.actionContainer}>
+              <div className={classes.prettyAlign}>
+                <div className={classes.titleBalance}>
+                  {/*<Typography variant="h3" className={classes.goldBalance}>
+                    1.9376 ETH
+                  </Typography>
+                  <Typography variant="h4">Your ROCK Tokens</Typography>
+                  <Typography variant="h4">Value: 765.78 USD</Typography>*/}
+
+                  <Typography variant="h3" className={classes.goldBalance}>
+                    23360.8676 ROCK
+                  </Typography>
+                  <Typography variant="h4">Your Total Dividends</Typography>
+                  <Typography variant="h4">Value: 137.61 USD</Typography>
+                </div>
+                <img
+                  alt=""
+                  src={require("../../assets/eth_gold_icon.png")}
+                  height={"100px"}
+                />
+              </div>
+
+              <div className={classes.buttonContainer}>
+                <Button
+                  className={classes.withdrawButton}
+                  variant="outlined"
+                  color="primary"
+                  //onClick={this.unstake}
+                  disabled={!address}
+                  fullWidth
+                >
+                  <Typography className={classes.buttonText} variant={"h4"}>
+                    WITHDRAW DIVIDENDS
+                  </Typography>
+                </Button>
               </div>
             </Card>
           </div>
