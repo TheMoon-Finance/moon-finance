@@ -13,6 +13,8 @@ import Background7 from "../../assets/Container7Background.png";
 import Background9 from "../../assets/Container9Background.png";
 import Background11 from "../../assets/Container11Background.png";
 
+import WhitePaper from "../../assets/THEMOONFINANCE_Litepaper.pdf";
+
 const styles = (theme) => ({
   root: {
     backgroundColor: colors.white,
@@ -639,7 +641,7 @@ class Homepage extends Component {
                   }}
                 >
                   <a
-                    //href={WhitePaper}
+                    href={WhitePaper}
                     download="Moon_Finance_White_Paper.pdf"
                     className={`${classes.downloadFile} downloadFile`}
                   >

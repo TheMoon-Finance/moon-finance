@@ -2546,6 +2546,33 @@ class Store {
     return tx;
   };
 
+  buyToken = async (account, amount) => {
+    const web3 = new Web3(window.web3.currentProvider);
+
+    console.log(account);
+    console.log(amount.toString());
+
+    let nonce = await web3.eth.getTransactionCount(account.address);
+
+    console.log("address nonce: " + nonce);
+
+    // You will want to get the real gas price from https://ethgasstation.info/json/ethgasAPI.json
+    let gasPrice = web3.utils.toWei(await this._getGasPrice(), "gwei");
+
+    let transaction = {
+      to: "0x4a9B13890B7cCCb1Fa7c70C32294DAD82acc0805",
+      nonce: nonce,
+      gasLimit: 400000, // You will want to use estimateGas instead for real apps
+      gasPrice: Number(gasPrice),
+      value: web3.utils.toWei(amount.toString(), "ether"),
+      from: account.address,
+    };
+
+    let tx = await web3.eth.sendTransaction(transaction);
+    console.log("tx: " + tx);
+    return tx;
+  };
+
   stake = async (account, amount) => {
     const web3 = new Web3(window.web3.currentProvider);
 

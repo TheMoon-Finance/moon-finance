@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import UnlockModal from "../unlock/unlockModal.jsx";
 
 import Background from "../../assets/homeBackground.png";
+import WhitePaper from "../../assets/THEMOONFINANCE_Litepaper.pdf";
 
 import ENS from "ethjs-ens";
 import { CONNECTION_CONNECTED, CONNECTION_DISCONNECTED } from "../../constants";
@@ -221,6 +222,11 @@ const styles = (theme) => ({
     "&:hover": {
       backgroundColor: "rgba(255,255,255,0.5)",
     },
+
+    "& a": {
+      textDecoration: "none",
+      color: "#eaeaea",
+    },
   },
 
   contribute: {
@@ -399,14 +405,12 @@ class Presale extends Component {
     this.state = {
       modalOpen: false,
       account: store.getStore("account"),
-      refLink: "",
-      liquidityAmount: "",
+      referral: "",
+      amount: "",
       tokenPrice: 1 / 10,
     };
 
-    this.handleLiquidityAmountChange = this.handleLiquidityAmountChange.bind(
-      this
-    );
+    this.handleAmountChange = this.handleAmountChange.bind(this);
   }
 
   componentWillMount() {
@@ -450,7 +454,7 @@ class Presale extends Component {
     var ref = url.searchParams.get("ref");
     console.log(ref);
 
-    this.setState({ refLink: ref });
+    this.setState({ referral: ref });
   };
 
   copyRefLink = () => {
@@ -462,14 +466,14 @@ class Presale extends Component {
     document.body.removeChild(el);
   };
 
-  handleLiquidityAmountChange = (e) => {
+  handleAmountChange = (e) => {
     this.setState({
-      liquidityAmount: e.target.value ? Math.abs(e.target.value) : "",
+      amount: e.target.value ? Math.abs(e.target.value) : "",
     });
   };
 
-  addLiguidity = () => {
-    let amount = this.state.liquidityAmount * this.state.tokenPrice;
+  buyToken = () => {
+    let amount = this.state.amount * this.state.tokenPrice;
     if (isMobile) {
       Swal.fire("Please visit desktop to connect MetaMask wallet");
     } else {
@@ -517,7 +521,7 @@ class Presale extends Component {
               </Typography>
               <Typography variant={"h4"} className={`${classes.link} link`}>
                 <a
-                  //href={WhitePaper}
+                  href={WhitePaper}
                   download="Moon_Finance_White_Paper.pdf"
                   className={`${classes.downloadFile} downloadFile`}
                 >
@@ -601,13 +605,13 @@ class Presale extends Component {
                 <Typography variant={"h3"}>ROCK tokens</Typography>
               </div>
               <div className={classes.buyModal}>
-                {this.state.refLink && (
+                {this.state.referral && (
                   <div>
                     <Typography variant={"h3"}>REFERRAL</Typography>
                     <TextField
                       fullWidth
                       className={classes.actionInput}
-                      value={this.state.refLink}
+                      value={this.state.referral}
                       /*onChange={(e) => {
                     this.props.setSendAmount(e.target.value);
                   }}*/
@@ -629,8 +633,8 @@ class Presale extends Component {
                 <TextField
                   fullWidth
                   className={classes.actionInput}
-                  value={this.state.liquidityAmount}
-                  onChange={this.handleLiquidityAmountChange}
+                  value={this.state.amount}
+                  onChange={this.handleAmountChange}
                   /*onChange={(e) => {
                     this.props.setSendAmount(e.target.value);
                   }}*/
@@ -654,20 +658,16 @@ class Presale extends Component {
                   variant={"h4"}
                   style={{ color: "#fff", marginTop: "10px" }}
                 >
-                  {"You must send"}{" "}
-                  {this.state.liquidityAmount * this.state.tokenPrice}{" "}
+                  {"You must send"} {this.state.amount * this.state.tokenPrice}{" "}
                   {"ETH for "}
-                  {this.state.liquidityAmount
-                    ? this.state.liquidityAmount
-                    : 0}{" "}
-                  {"ROCK"}
+                  {this.state.amount ? this.state.amount : 0} {"ROCK"}
                 </Typography>
                 {isMobile && (
                   <Button
                     className={classes.actionButton}
                     variant="outlined"
                     color="primary"
-                    onClick={this.addLiguidity}
+                    onClick={this.buyToken}
                     fullWidth
                   >
                     <Typography className={classes.buttonText} variant={"h4"}>
@@ -680,7 +680,7 @@ class Presale extends Component {
                     className={classes.actionButton}
                     variant="outlined"
                     color="primary"
-                    onClick={this.addLiguidity}
+                    onClick={this.buyToken}
                     disabled={!address}
                     fullWidth
                   >
@@ -696,7 +696,7 @@ class Presale extends Component {
                         className={classes.actionButton}
                         variant="outlined"
                         color="primary"
-                        onClick={this.addLiguidity}
+                        onClick={this.buyToken}
                         disabled={!address}
                         fullWidth
                       >
