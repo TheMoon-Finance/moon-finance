@@ -1324,7 +1324,7 @@ class Homepage extends Component {
             <div
               className={classes.contactLink}
               onClick={() =>
-                window.open("https://t.me/themoonfinance", "_blank")
+                window.open("https://t.me/joinchat/RMCMfLCjxS1Uz9Yh", "_blank")
               }
             >
               <img

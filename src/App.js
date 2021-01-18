@@ -136,9 +136,9 @@ class App extends Component {
               <Route path="/platform">
                 <Platform />
               </Route>
-              <Route path="/presale">
+              {/*<Route path="/presale">
                 <Presale />
-              </Route>
+              </Route>*/}
               <Route path="/">
                 <Homepage />
               </Route>
