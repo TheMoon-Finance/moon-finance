@@ -6,6 +6,7 @@ import { withNamespaces } from "react-i18next";
 import { colors } from "../../theme";
 
 import { HashLink } from "react-router-hash-link";
+import Countdown from "./clock.jsx";
 
 import Background1 from "../../assets/Container1Background.png";
 import Background4 from "../../assets/Container4Background.png";
@@ -51,15 +52,15 @@ const styles = (theme) => ({
     justifyContent: "center",
     padding: "20px",
     flexWrap: "wrap",
+    [theme.breakpoints.down("md")]: {
+      flexDirection: "column",
+    },
   },
-  presale: {
+  logo: {
     display: "flex",
     //paddingBottom: "60px",
     alignItems: "center",
     flex: 1,
-    [theme.breakpoints.down("md")]: {
-      display: "none",
-    },
   },
   flexy: {
     display: "flex",
@@ -181,6 +182,36 @@ const styles = (theme) => ({
     [theme.breakpoints.down("md")]: {
       flexDirection: "column",
     },
+  },
+
+  presaleDescription: {
+    display: "flex",
+    textTransform: "uppercase",
+    color: colors.white,
+    justifyContent: "center",
+    marginBottom: "20px",
+    flexDirection: "column",
+    textAlign: "center",
+
+    "&h3": {
+      fontSize: "20px",
+    },
+
+    [theme.breakpoints.down("md")]: {
+      marginBottom: "0px",
+      marginTop: "30px",
+    },
+
+    [theme.breakpoints.down("sm")]: {
+      flexWrap: "wrap",
+      textAlign: "center",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+  },
+
+  separator: {
+    margin: "0 5px",
   },
 
   lunaswapDescription: {
@@ -597,7 +628,7 @@ class Homepage extends Component {
         {/* ----------------------------------------------------------------------  Container 1  -------------------------------------------------------------------------------------- */}
         <div className={classes.container1}>
           <div className={classes.header}>
-            <div className={classes.presale}>
+            <div className={classes.logo}>
               <img
                 alt=""
                 src={require("../../assets/Logo.png")}
@@ -606,7 +637,7 @@ class Homepage extends Component {
             </div>
             <div className={classes.links}>
               <div className={classes.flexy}>
-                <Typography
+                {/*<Typography
                   variant={"h4"}
                   className={classes.link}
                   style={{ color: "#f8ce00ff" }}
@@ -615,7 +646,19 @@ class Homepage extends Component {
                   }}
                 >
                   Presale
+                </Typography>*/}
+
+                <Typography
+                  variant={"h4"}
+                  className={classes.link}
+                  //style={{ color: "#f8ce00ff" }}
+                  onClick={() => {
+                    this.nav("platform");
+                  }}
+                >
+                  Platform
                 </Typography>
+
                 <HashLink to="/home#features" smooth>
                   <Typography variant={"h4"} className={classes.link}>
                     Features
@@ -624,6 +667,11 @@ class Homepage extends Component {
                 <HashLink to="/home#ecosystem" smooth>
                   <Typography variant={"h4"} className={classes.link}>
                     Ecosystem
+                  </Typography>
+                </HashLink>
+                <HashLink to="/home#roadmap" smooth>
+                  <Typography variant={"h4"} className={classes.link}>
+                    Roadmap
                   </Typography>
                 </HashLink>
                 <HashLink to="/home#contact" smooth>
@@ -717,7 +765,81 @@ class Homepage extends Component {
               />
             </div>
             <div className={classes.textContainer}>
-              <div className={classes.lunaswapDescription}>
+              {/* ---------------------------------- At Presale period ---------------------------------------- */}
+              <div className={classes.presaleDescription}>
+                <div className={classes.description}>
+                  <div>
+                    <Typography variant={"h3"} className={classes.whiteText}>
+                      COUNTDOWN TO
+                    </Typography>
+                  </div>
+                  <div>
+                    <Typography variant={"h3"} className={classes.yellowText}>
+                      Presale{" "}
+                    </Typography>
+                  </div>
+                </div>
+              </div>
+              <Countdown />
+              <div
+                className={classes.presaleDescription}
+                style={{ marginTop: "20px" }}
+              >
+                <div>
+                  <Typography variant={"h4"}>Don't forget to </Typography>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#f8cf36",
+                  }}
+                >
+                  <Typography variant={"h4"}>
+                    Like{" "}
+                    <i class="fa fa-thumbs-up" style={{ fontSize: "24px" }}></i>
+                  </Typography>
+                  <div className={classes.separator}>&#124;</div>
+                  <Typography variant={"h4"}>
+                    Share{" "}
+                    <i class="fa fa-share" style={{ fontSize: "24px" }}></i>
+                  </Typography>
+                  <div className={classes.separator}>&#124;</div>
+                  <Typography variant={"h4"}>
+                    Comment{" "}
+                    <i class="fa fa-comment" style={{ fontSize: "24px" }}></i>
+                  </Typography>
+                </div>
+                <div>
+                  <Typography variant={"h4"}>
+                    to get all the latest updates on the official MoonFinance
+                    Presale.{" "}
+                  </Typography>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginTop: "10px",
+                  }}
+                >
+                  <Typography
+                    variant={"h3"}
+                    style={{
+                      backgroundColor: "#f8cf36",
+                      color: "black",
+                      width: "75%",
+                      padding: "5px",
+                    }}
+                  >
+                    PRESALE REFFERAL PROGRAM BEING LAUNCHED SOON.
+                  </Typography>
+                </div>
+              </div>
+
+              {/* ---------------------------------- After Presale end ----------------------------------------- */}
+              {/*<div className={classes.lunaswapDescription}>
                 <div>
                   <Typography variant={"h2"}>Launch your</Typography>
                 </div>
@@ -747,7 +869,7 @@ class Homepage extends Component {
                 >
                   SIGN UP FOR LUNASWAP LAUNCH
                 </Typography>
-              </div>
+              </div>*/}
             </div>
           </div>
         </div>
@@ -1127,7 +1249,7 @@ class Homepage extends Component {
         </div>
 
         {/* ----------------------------------------------------------------------  Container 9 -------------------------------------------------------------------------------------- */}
-        <div className={classes.container9}>
+        <div className={classes.container9} id="roadmap">
           <div className={classes.title}>
             <Typography variant={"h3"}>Roadmap</Typography>
           </div>
@@ -1250,6 +1372,11 @@ class Homepage extends Component {
             <HashLink to="/home#ecosystem" smooth>
               <Typography variant={"h4"} className={classes.link}>
                 Ecosystem
+              </Typography>
+            </HashLink>
+            <HashLink to="/home#roadmap" smooth>
+              <Typography variant={"h4"} className={classes.link}>
+                Roadmap
               </Typography>
             </HashLink>
             <HashLink to="/home#contact" smooth>

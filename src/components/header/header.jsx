@@ -8,6 +8,9 @@ import { CONNECTION_CONNECTED, CONNECTION_DISCONNECTED } from "../../constants";
 
 import UnlockModal from "../unlock/unlockModal.jsx";
 
+import "./sidebarStyles.css";
+import SideBar from "./sidebar";
+
 import Store from "../../stores";
 const emitter = Store.emitter;
 const store = Store.store;
@@ -33,7 +36,13 @@ const styles = (theme) => ({
     justifyContent: "center",
     [theme.breakpoints.down("sm")]: {
       justifyContent: "space-between",
-      padding: "16px 24px",
+      //padding: "16px 24px",
+      padding: "16px 0px",
+    },
+  },
+  sidebar: {
+    [theme.breakpoints.up("md")]: {
+      display: "none",
     },
   },
   icon: {
@@ -42,6 +51,10 @@ const styles = (theme) => ({
     flex: 1,
     "& img": {
       cursor: "pointer",
+    },
+    [theme.breakpoints.down("md")]: {
+      justifyContent: "flex-end",
+      marginRight: "20px",
     },
   },
   links: {
@@ -52,6 +65,9 @@ const styles = (theme) => ({
     borderRadius: "80px",
     alignItems: "center",
     justifyContent: "center",
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
   },
   link: {
     color: colors.white,
@@ -85,6 +101,7 @@ const styles = (theme) => ({
     flex: 1,
     [theme.breakpoints.down("sm")]: {
       flex: "0",
+      display: "none",
     },
   },
   walletAddress: {
@@ -211,6 +228,10 @@ class Header extends Component {
     return (
       <div className={classes.root}>
         <div className={classes.headerV2}>
+          <div className={classes.sidebar}>
+            <SideBar />
+          </div>
+
           <div className={classes.icon}>
             <img
               alt=""
@@ -225,7 +246,7 @@ class Header extends Component {
             {this.renderLink("dashboard")}
             {this.renderLink("vaults")}
             {this.renderLink("earn")}
-            {this.renderLink("staking")}
+            {/*this.renderLink("staking")*/}
             {this.renderLink("zap")}
             {this.renderLink("stats")}
             {this.renderLink("cover")}

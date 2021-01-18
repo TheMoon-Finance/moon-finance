@@ -1,16 +1,19 @@
+/* Stars */
 .stars {
-    animation: fadein 3s linear infinite normal forwards;
+  animation: fadein 3s linear infinite normal forwards;
+  position: absolute;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0.4;
   }
-  
-  @keyframes fadein {
-    0% {
-      opacity: 0.4;
-    }
-    50% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0.4;
-    }
+  50% {
+    opacity: 1;
   }
+  100% {
+    opacity: 0.4;
+  }
+}
+
   

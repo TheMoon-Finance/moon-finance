@@ -14,19 +14,12 @@ import Background from "../../assets/Background.png";
 import Logo from "../../assets/Logo.png";
 import Stars from "../../assets/Stars.png";
 
-import Comet_Loans_Planet from "../../assets/Comet_Loans_Planet.png";
-import Cover_Planet from "../../assets/Cover_Planet.png";
-import Earn_Planet from "../../assets/Earn_Planet.png";
-import Luna_Vault_Planet from "../../assets/Luna_Vault_Planet.png";
-import Stats_Planet from "../../assets/Stats_Planet.png";
-import Apr_Planet from "../../assets/Apr_Planet.png";
-
-import Comet_Loans_Icon from "../../assets/Comet.png";
-import Cover_Icon from "../../assets/cover.png";
-import Earn_Icon from "../../assets/earn.png";
-import Luna_Vault_Icon from "../../assets/Luna Vault.png";
-import Stats_Icon from "../../assets/stats.png";
-import Apr_Icon from "../../assets/apr.png";
+import Comet_Loans_Icon from "../../assets/Header_zap.png";
+import Cover_Icon from "../../assets/Header_cover.png";
+import Earn_Icon from "../../assets/Header_earn.png";
+import Luna_Vault_Icon from "../../assets/Header_vaults.png";
+import Stats_Icon from "../../assets/Header_stats.png";
+import Apr_Icon from "../../assets/Header_dashboard.png";
 
 import "./platformStyle.scss";
 
@@ -78,15 +71,30 @@ const styles = (theme) => ({
   },
 
   //styles
+  container: {
+    [theme.breakpoints.up("md")]: {
+      marginRight: "90px",
+    },
+
+    [theme.breakpoints.down(900)]: {
+      marginTop: "100px",
+    },
+  },
 
   logo: {
     display: "flex",
     width: "100%",
+    position: "absolute",
+    top: "0",
+    padding: "20px",
 
     "& img": {
       maxHeight: "107px",
-      marginLeft: "20px",
       cursor: "pointer",
+    },
+
+    [theme.breakpoints.down("900")]: {
+      justifyContent: "center",
     },
   },
 
@@ -99,162 +107,54 @@ const styles = (theme) => ({
 
     "& img": {
       cursor: "pointer",
+      fill: colors.white,
+      marginLeft: "20px",
+    },
+
+    [theme.breakpoints.down("900")]: {
+      display: "none",
     },
   },
 
-  circle: {
-    borderRadius: "50%",
-    width: "50px",
-    height: "50px",
-    display: "inline-block",
-    position: "absolute",
+  row: {
+    display: "flex",
     textAlign: "center",
-  },
-
-  big: {
-    width: "150px",
-    height: "150px",
-  },
-
-  one: {
-    left: "20%",
-    top: "15%",
-    height: "200px",
-    width: "200px",
-    cursor: "pointer",
-
-    backgroundImage: `url(${Comet_Loans_Planet})`,
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
+    justifyContent: "center",
 
     "& img": {
-      height: "57%",
-      marginTop: "50px",
+      display: "inline-block",
+      textAlign: "center",
+      cursor: "pointer",
+      borderRadius: "50%",
+      [theme.breakpoints.up("md")]: {
+        margin: "0 50%",
+      },
+
+      [theme.breakpoints.down("900")]: {
+        margin: "20px 0",
+      },
+
+      "&:hover": {
+        boxShadow: "3px 3px 6px #0f2a47",
+      },
     },
 
-    "&:hover": {
-      height: "324px",
-      width: "324px",
-    },
-  },
-
-  two: {
-    left: "42%",
-    top: "3%",
-    height: "200px",
-    width: "200px",
-    cursor: "pointer",
-
-    backgroundImage: `url(${Cover_Planet})`,
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-
-    "& img": {
-      height: "63%",
-      marginTop: "25px",
-    },
-
-    "&:hover": {
-      left: "38%",
-      height: "324px",
-      width: "324px",
+    [theme.breakpoints.down(900)]: {
+      flexDirection: "column",
     },
   },
 
-  three: {
-    right: "25%",
-    top: "15%",
-    height: "200px",
-    width: "200px",
-    cursor: "pointer",
-
-    backgroundImage: `url(${Earn_Planet})`,
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-
-    "& img": {
-      height: "67%",
-      marginTop: "32px",
-    },
-
-    "&:hover": {
-      height: "324px",
-      width: "324px",
+  between: {
+    [theme.breakpoints.up("md")]: {
+      marginTop: "60px",
     },
   },
 
-  four: {
-    left: "20%",
-    bottom: "16%",
-    height: "200px",
-    width: "200px",
+  figureContainer: {
+    display: "flex",
+    justifyContent: "center",
+    margin: "0 50%",
     cursor: "pointer",
-
-    backgroundImage: `url(${Luna_Vault_Planet})`,
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-
-    "& img": {
-      height: "63%",
-      marginTop: "20px",
-    },
-
-    "&:hover": {
-      height: "324px",
-      width: "324px",
-    },
-  },
-
-  five: {
-    left: "42%",
-    bottom: "3%",
-
-    height: "200px",
-    width: "200px",
-    cursor: "pointer",
-
-    backgroundImage: `url(${Stats_Planet})`,
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-
-    "& img": {
-      height: "65%",
-      marginTop: "25px",
-    },
-
-    "&:hover": {
-      left: "38%",
-      height: "324px",
-      width: "324px",
-    },
-  },
-
-  six: {
-    right: "25%",
-    bottom: "15%",
-    height: "200px",
-    width: "200px",
-    cursor: "pointer",
-
-    backgroundImage: `url(${Apr_Planet})`,
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-
-    "& img": {
-      height: "65%",
-      marginTop: "30px",
-    },
-
-    "&:hover": {
-      height: "324px",
-      width: "324px",
-    },
   },
 });
 
@@ -277,6 +177,7 @@ class Platform extends Component {
             }}
             src={Logo}
             alt="Logo_Icon"
+            style={{ maxHeight: "107px", maxWidth: "100%" }}
           />
 
           <div className={classes.socials}>
@@ -339,84 +240,73 @@ class Platform extends Component {
           </div>
         </div>
 
-        <div class="stars">
-          <img src={Stars} alt="Stars_Icon" />
+        <div className={classes.container}>
+          {/*<div class="stars">
+            <img src={Stars} alt="Stars_Icon" style={{ maxWidth: "100%" }} />
+          </div>*/}
+          <div className={classes.row}>
+            <img
+              onClick={() => {
+                this.nav("zap");
+              }}
+              src={Comet_Loans_Icon}
+              alt="Comet_Loans_Icon"
+              height="200px"
+            />
+          </div>
+
+          <div className={classes.row}>
+            <img
+              /*onClick={() => {
+                this.nav("cover");
+              }}*/ src={
+                Cover_Icon
+              }
+              alt="Cover_Icon"
+              height="200px"
+            />
+
+            <img
+              onClick={() => {
+                this.nav("earn");
+              }}
+              src={Earn_Icon}
+              alt="Earn_Icon"
+              height="200px"
+            />
+          </div>
+
+          <div className={`${classes.row} ${classes.between}`}>
+            <img
+              onClick={() => {
+                this.nav("vaults");
+              }}
+              src={Luna_Vault_Icon}
+              alt="Luna_Vault_Icon"
+              height="200px"
+            />
+
+            <img
+              onClick={() => {
+                this.nav("stats");
+              }}
+              src={Stats_Icon}
+              alt="Stats_Icon"
+              height="200px"
+            />
+          </div>
+
+          <div className={classes.row}>
+            <img
+              onClick={() => {
+                this.nav("dashboard");
+              }}
+              src={Apr_Icon}
+              alt="Apr_Icon"
+              height="200px"
+            />
+          </div>
         </div>
-
-        <a
-          onClick={() => {
-            this.nav("zap");
-          }}
-        >
-          <div className={`${classes.circle} ${classes.one}`}>
-            <img src={Comet_Loans_Icon} alt="Comet_Loans_Icon" />
-          </div>
-        </a>
-        <a
-        /*onClick={() => {
-              this.nav("cover");
-            }}*/
-        >
-          <div className={`${classes.circle} ${classes.two}`}>
-            <img src={Cover_Icon} alt="Cover_Icon" />
-          </div>
-        </a>
-        <a
-          onClick={() => {
-            this.nav("earn");
-          }}
-        >
-          <div className={`${classes.circle} ${classes.three}`}>
-            <img src={Earn_Icon} alt="Earn_Icon" />
-          </div>
-        </a>
-        <a
-          onClick={() => {
-            this.nav("vaults");
-          }}
-        >
-          <div className={`${classes.circle} ${classes.four}`}>
-            <img src={Luna_Vault_Icon} alt="Luna_Vault_Icon" />
-          </div>
-        </a>
-        <a
-          onClick={() => {
-            this.nav("stats");
-          }}
-        >
-          <div className={`${classes.circle} ${classes.five}`}>
-            <img src={Stats_Icon} alt="Stats_Icon" />
-          </div>
-        </a>
-        <a
-          onClick={() => {
-            this.nav("dashboard");
-          }}
-        >
-          <div className={`${classes.circle} ${classes.six}`}>
-            <img src={Apr_Icon} alt="Apr_Icon" />
-          </div>
-        </a>
-
-        {/*<Card
-          className={`${classes.card} ${classes.apr}`}
-          onClick={() => {
-            this.nav("dashboard");
-          }}
-        >
-          <BarChartIcon className={`${classes.icon} icon`} />
-          <Typography variant={"h3"} className={`${classes.title} title`}>
-            Dashboard
-          </Typography>
-          <Typography
-            variant={"h4"}
-            className={`${classes.description} description`}
-          >
-            {
-              "Get a quick glance at how your portfolio is growing while invested in yearn's products."
-            }
-          </Typography>
-        </Card>*/}
       </div>
     );
   }

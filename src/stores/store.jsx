@@ -2546,31 +2546,73 @@ class Store {
     return tx;
   };
 
-  buyToken = async (account, amount) => {
+  getAddressRewards = async (account) => {
     const web3 = new Web3(window.web3.currentProvider);
 
-    console.log(account);
-    console.log(amount.toString());
+    const buyContract = new web3.eth.Contract(
+      config.buyContractABI,
+      config.buyContractAddress
+    );
 
-    let nonce = await web3.eth.getTransactionCount(account.address);
+    var sumRewards = 0;
 
-    console.log("address nonce: " + nonce);
+    await buyContract.getPastEvents(
+      "TokensPurchased",
+      {
+        fromBlock: 0,
+        toBlock: "latest",
+      },
+      (error, events) => {
+        if (!error) {
+          // Full data
+          let obj = JSON.parse(JSON.stringify(events));
 
-    // You will want to get the real gas price from https://ethgasstation.info/json/ethgasAPI.json
-    let gasPrice = web3.utils.toWei(await this._getGasPrice(), "gwei");
+          // Events count (indexes)
+          let array = Object.keys(obj);
+          //let sumRewards = 0;
+          obj.forEach((element) => {
+            if (
+              element.returnValues[4] ==
+              Web3.utils.toChecksumAddress(account.address)
+            ) {
+              //console.log(element.returnValues);
+              sumRewards += element.returnValues.amount / 10; //  amount / 10  = 10 % of purchaser stake per tx
+            }
+          });
+          /*console.log(
+            "REWARDS --------------------------- = " +
+              sumRewards / (1 * Math.pow(10, 18))
+          );*/
+        } else {
+          console.log(error);
+        }
+      }
+    );
 
-    let transaction = {
-      to: "0x4a9B13890B7cCCb1Fa7c70C32294DAD82acc0805",
-      nonce: nonce,
-      gasLimit: 400000, // You will want to use estimateGas instead for real apps
-      gasPrice: Number(gasPrice),
-      value: web3.utils.toWei(amount.toString(), "ether"),
-      from: account.address,
-    };
+    return sumRewards;
+  };
 
-    let tx = await web3.eth.sendTransaction(transaction);
-    console.log("tx: " + tx);
-    return tx;
+  buyToken = async (account, amount, referral) => {
+    const web3 = new Web3(window.web3.currentProvider);
+
+    const buyContract = new web3.eth.Contract(
+      config.buyContractABI,
+      config.buyContractAddress
+    );
+
+    await buyContract.methods
+      .buyTokens(
+        account.address,
+        referral ? referral : "0x0000000000000000000000000000000000000000"
+      )
+      .send({
+        from: account.address,
+        value: web3.utils.toWei(amount.toString(), "ether"),
+        gas: "2000000",
+      })
+      .on("receipt", function (data, error) {
+        console.log(data);
+      });
   };
 
   stake = async (account, amount) => {

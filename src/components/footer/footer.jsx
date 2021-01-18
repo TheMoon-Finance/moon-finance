@@ -36,6 +36,9 @@ const styles = (theme) => ({
     [theme.breakpoints.down("xs")]: {
       justifyContent: "flex-start",
     },
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column-reverse",
+    },
   },
   heading: {
     color: colors.white,
@@ -51,6 +54,9 @@ const styles = (theme) => ({
     alignItems: "center",
     "&:hover": {
       textDecoration: "underline",
+    },
+    [theme.breakpoints.down("sm")]: {
+      padding: "0 10px 10px",
     },
   },
   separator: {
@@ -73,17 +79,14 @@ const styles = (theme) => ({
   builtWith: {
     display: "flex",
     flex: "1",
-    [theme.breakpoints.down("md")]: {
-      display: "none",
+    [theme.breakpoints.down("sm")]: {
+      justifyContent: "center",
     },
   },
   community: {
     display: "flex",
     padding: "0px 24px",
     cursor: "default",
-    [theme.breakpoints.down("xs")]: {
-      paddingBottom: "24px",
-    },
   },
   communityLink: {
     display: "flex",
@@ -99,6 +102,9 @@ const styles = (theme) => ({
     display: "flex",
     flex: "1",
     justifyContent: "flex-end",
+    [theme.breakpoints.down("sm")]: {
+      justifyContent: "center",
+    },
   },
   hr: {
     height: "5px",

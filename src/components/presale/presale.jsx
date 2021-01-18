@@ -220,7 +220,8 @@ const styles = (theme) => ({
     padding: "7px",
     borderRadius: "30px",
     "&:hover": {
-      backgroundColor: "rgba(255,255,255,0.5)",
+      //backgroundColor: "rgba(255,255,255,0.5)",
+      textDecoration: "underline",
     },
 
     "& a": {
@@ -239,6 +240,10 @@ const styles = (theme) => ({
     color: "#177bd3",
     textTransform: "uppercase",
     fontSize: "30px",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+      height: "110px",
+    },
   },
 
   contract: {
@@ -406,6 +411,7 @@ class Presale extends Component {
       modalOpen: false,
       account: store.getStore("account"),
       referral: "",
+      refReward: "",
       amount: "",
       tokenPrice: 1 / 10,
     };
@@ -430,6 +436,7 @@ class Presale extends Component {
     this.setState({ account: store.getStore("account") });
     this.setAddressEnsName();
     this.getRefAddress();
+    this.getRefReward();
   };
 
   connectionDisconnected = () => {
@@ -452,14 +459,20 @@ class Presale extends Component {
     var url_string = window.location.href;
     var url = new URL(url_string);
     var ref = url.searchParams.get("ref");
-    console.log(ref);
 
     this.setState({ referral: ref });
   };
 
+  getRefReward = async () => {
+    var reward = await store.getAddressRewards(store.getStore("account"));
+
+    this.setState({ refReward: reward / (1 * Math.pow(10, 18)) });
+  };
+
   copyRefLink = () => {
     const el = document.createElement("textarea");
-    el.value = "https://www.themoon.finance?ref=" + this.state.account.address;
+    el.value =
+      "https://www.themoon.finance/presale?ref=" + this.state.account.address;
     document.body.appendChild(el);
     el.select();
     document.execCommand("copy");
@@ -477,7 +490,7 @@ class Presale extends Component {
     if (isMobile) {
       Swal.fire("Please visit desktop to connect MetaMask wallet");
     } else {
-      store.buyToken(store.getStore("account"), amount);
+      store.buyToken(store.getStore("account"), amount, this.state.referral);
     }
   };
 
@@ -582,10 +595,12 @@ class Presale extends Component {
               <div className={classes.disaclaimer}>
                 <div className={classes.refBalance}>
                   <Typography variant="h3" className={classes.goldBalance}>
-                    0.000000 ROCK
+                    {this.state.refReward ? this.state.refReward : "0.0"} ROCK
                   </Typography>
                   <Typography variant="h4">Your Referral Earnings</Typography>
-                  <Typography variant="h4">Value: 0 USD</Typography>
+                  <Typography variant="h4">
+                    Value: {this.state.refReward / 10} ETH
+                  </Typography>
                 </div>
               </div>
             </div>
@@ -594,7 +609,18 @@ class Presale extends Component {
           <div className={classes.portfolioContainer}>
             <div className={classes.titleBalance}>
               <div className={classes.contribute}>
-                <Typography variant={"h2"}>The Moon Finance Presale</Typography>
+                <img
+                  alt=""
+                  src={require("../../assets/Logo.png")}
+                  height="70px"
+                />
+                <Typography
+                  variant={"h2"}
+                  style={{ color: "#eaeaea", fontWeight: "300" }}
+                >
+                  {" "}
+                  &nbsp;Presale
+                </Typography>
               </div>
               {/*<div className={classes.contract}>
                 <Typography variant={"h3"}>
@@ -658,7 +684,8 @@ class Presale extends Component {
                   variant={"h4"}
                   style={{ color: "#fff", marginTop: "10px" }}
                 >
-                  {"You must send"} {this.state.amount * this.state.tokenPrice}{" "}
+                  {"You must send"}{" "}
+                  {(this.state.amount * this.state.tokenPrice).toFixed(3)}{" "}
                   {"ETH for "}
                   {this.state.amount ? this.state.amount : 0} {"ROCK"}
                 </Typography>

@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css?family=Lato");
+
+.countdown-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  //flex-wrap: wrap;
+  //background-color: rgba(255, 255, 255, 0.5);
+  //border-radius: 80px;
+}
+
+.countdown-item {
+  color: white;
+  //font-size: 35px;
+  font-size: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  //line-height: 30px;
+  margin: 10px;
+  //padding-top: 10px;
+  position: relative;
+  //width: 100px;
+  //height: 100px;
+  width: 200px;
+  height: 200px;
+}
+
+.countdown-item span {
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.countdown-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  //width: 100px;
+  //height: 100px;
+  width: 200px;
+  height: 200px;
+}
+
+@media screen and (max-width: 900px) {
+  .countdown-wrapper {
+    //flex-wrap: wrap;
+  }
+
+  .countdown-item {
+    font-size: 20px;
+    width: 65px;
+    height: 65px;
+  }
+
+  .countdown-svg {
+    width: 65px;
+    height: 65px;
+  }
+
+  .countdown-item span {
+    font-size: 10px;
+  }
+}
