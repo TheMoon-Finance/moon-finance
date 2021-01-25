@@ -112,6 +112,7 @@ const styles = (theme) => ({
     display: "flex",
     flexDirection: "column",
     width: "100%",
+    height: "100vh",
     padding: "0 30px 40px",
     justifyContent: "flex-start",
     alignItems: "center",
@@ -617,6 +618,20 @@ const styles = (theme) => ({
   },
 });
 
+const LightTooltip = withStyles((theme) => ({
+  tooltip: {
+    backgroundColor: "#e9eef7",
+    color: "#001ca1",
+    boxShadow: theme.shadows[1],
+    fontSize: 20,
+    marginTop: "20px",
+    borderRadius: "8px",
+  },
+  arrow: {
+    color: "#e9eef7",
+  },
+}))(Tooltip);
+
 class Homepage extends Component {
   constructor(props) {
     super();
@@ -767,7 +782,10 @@ class Homepage extends Component {
             <div className={classes.textContainer}>
               {/* ---------------------------------- At Presale period ---------------------------------------- */}
               <div className={classes.presaleDescription}>
-                <div className={classes.description}>
+                <div
+                  className={classes.description}
+                  style={{ justifyContent: "center" }}
+                >
                   <div>
                     <Typography variant={"h3"} className={classes.whiteText}>
                       COUNTDOWN TO
@@ -814,7 +832,7 @@ class Homepage extends Component {
                 <div>
                   <Typography variant={"h4"}>
                     to get all the latest updates on the official MoonFinance
-                    Presale.{" "}
+                    Presale{" "}
                   </Typography>
                 </div>
                 <div
@@ -833,7 +851,7 @@ class Homepage extends Component {
                       padding: "5px",
                     }}
                   >
-                    PRESALE REFFERAL PROGRAM BEING LAUNCHED SOON.
+                    PRESALE REFFERAL PROGRAM BEING LAUNCHED SOON
                   </Typography>
                 </div>
               </div>
@@ -1142,15 +1160,17 @@ class Homepage extends Component {
               />
             </div>
           </div>
-          <Typography
-            variant={"h3"}
-            className={classes.solutionsButton}
-            onClick={() => {
-              this.nav("platform");
-            }}
-          >
-            Sign up for lunaswap launch
-          </Typography>
+          <LightTooltip title="Coming Soon" arrow placement="top">
+            <Typography
+              variant={"h3"}
+              className={classes.solutionsButton}
+              /*onClick={() => {
+                this.nav("platform");
+              }}*/
+            >
+              Sign up for lunaswap launch
+            </Typography>
+          </LightTooltip>
         </div>
 
         {/* ----------------------------------------------------------------------  Container 7 -------------------------------------------------------------------------------------- */}
