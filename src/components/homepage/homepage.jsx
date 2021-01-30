@@ -60,7 +60,6 @@ const styles = (theme) => ({
     display: "flex",
     //paddingBottom: "60px",
     alignItems: "center",
-    flex: 1,
   },
   flexy: {
     display: "flex",
@@ -624,7 +623,6 @@ const LightTooltip = withStyles((theme) => ({
     color: "#001ca1",
     boxShadow: theme.shadows[1],
     fontSize: 20,
-    marginTop: "20px",
     borderRadius: "8px",
   },
   arrow: {
@@ -694,6 +692,17 @@ class Homepage extends Component {
                     Contact
                   </Typography>
                 </HashLink>
+                <LightTooltip title="Coming Soon" arrow placement="bottom">
+                  <Typography
+                    variant={"h3"}
+                    className={classes.link}
+                    /*onClick={() => {
+                      this.nav("platform");
+                    }}*/
+                  >
+                    Claim your Gas Fee
+                  </Typography>
+                </LightTooltip>
                 <Typography
                   variant={"h4"}
                   className={classes.link}
