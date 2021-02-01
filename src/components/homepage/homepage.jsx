@@ -962,6 +962,16 @@ class Homepage extends Component {
                   operational, technical, and legal costs involved
                 </Typography>
               </div>
+              <div style={{ marginTop: "20px" }}>
+                <Typography variant={"h4"} style={{ fontWeight: "300" }}>
+                Mega stake referral program: 
+                Share your link to receive referral commission, every time someone 
+                uses ur link and stakes with ur referral link you will receive 10% of rock 
+                from the amount they stake and every time they unstake u will receive 10% of rock 
+                amount they unstake. If anyone unstake before 14 days period there will be a 
+                penalty charge fee that fee will be distributed to all rock stakers
+                </Typography>
+              </div>
             </div>
 
             <div className={classes.iconContainer}>
